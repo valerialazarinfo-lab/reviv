@@ -1,0 +1,78 @@
+{
+  "atualizado": "2026-10-30",
+  "nota": "Horas PREFERIDAS por cidade (não é disponibilidade real). Torres Vedras usa o horário público do Google: segunda a sexta, 9:00–17:00. 'preferencia': true deixa escolher um dia útil sem horas. 'datas' acrescenta dias concretos; 'fechado' tira dias. Mais tarde este ficheiro pode ser trocado por um endereço que devolve o mesmo formato a partir do Google Calendar.",
+  "cidades": {
+    "tv": {
+      "semana": {
+        "1": [
+          "9:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00"
+        ],
+        "2": [
+          "9:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00"
+        ],
+        "3": [
+          "9:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00"
+        ],
+        "4": [
+          "9:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00"
+        ],
+        "5": [
+          "9:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00"
+        ]
+      },
+      "datas": {},
+      "fechado": [
+        "2026-12-08",
+        "2026-12-25",
+        "2027-01-01"
+      ]
+    },
+    "cs": {
+      "semana": {},
+      "datas": {},
+      "fechado": [],
+      "preferencia": true
+    },
+    "ge": {
+      "semana": {},
+      "datas": {},
+      "fechado": [],
+      "preferencia": true
+    }
+  }
+}

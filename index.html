@@ -2,6 +2,7 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Reviv · Isabel Miranda · Despigmentação de sobrancelhas e remoção de tatuagens a laser</title>
 <meta name="description" content="Despigmentação de sobrancelhas, remoção de tatuagens a laser, exossomos e cuidados de pele com a Isabel Miranda. Torres Vedras, Cascais e Genebra. 5,0 no Google. Marque a sua avaliação pelo WhatsApp.">
@@ -20,6 +21,7 @@
 <style>[hidden]{display:none!important}</style>
 </head>
 <body>
+<link rel="preload" as="image" href="img/g/f07.jpg" imagesrcset="img/g/f07-m.jpg 525w, img/g/f07.jpg 1200w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap">
@@ -35,7 +37,7 @@
   --nude:#dcc3a9;
   --champagne:#b8895b;
   --champagne-lt:#e8d3b4;
-  --brown:#9b5638;
+  --brown:#8a4a2f;
   --choc:#3a281e;
   --choc-2:#22170f;
   --ink:#2b1f18;
@@ -555,70 +557,269 @@ footer{background:var(--choc-2);color:rgba(247,241,234,.78);padding-block:70px 1
   .nails{overflow-x:auto}
 }
 
-/* Reviv additions: language switch, before/after comparator, laser vs other methods, cities, Instagram posts */
-.logo .mono{font-size:34px}
-.hero-mono{font-size:clamp(64px,10vw,140px)}
-.hero h1{font-size:clamp(44px,6.6vw,96px);line-height:1}
+/* Reviv overrides on top of the site-salao-luxo template */
+/* type: one pair only. Bodoni Moda 400/500 with a sturdier optical size so hairlines never break; Jost 400 for reading */
+body{font-weight:400;font-size:17.5px;color:#3f3028}
+h1,h2,h3,h4,.mono,.hero-mono,.score b,.seal b,.pillars li b,.fs-t,.faq summary,.room figcaption b,.rev p{font-weight:500;font-variation-settings:"opsz" 24}
+h1 em,h2 em,h3 em{font-weight:400;font-variation-settings:"opsz" 24}
+.hero h1{font-weight:500;font-size:clamp(44px,6.4vw,92px);line-height:1.02}
+.hero-mono{font-weight:400;font-size:clamp(60px,9vw,128px)}
+.logo .mono{font-weight:400;font-size:32px}
+.foot .mono{font-weight:400}
+.score b{font-weight:400}
+.eyebrow{font-weight:400;font-variation-settings:"opsz" 18}
+.rev p{font-weight:400;font-size:22px}
+.note,.pillars p,.faq details p,.book-txt p,.rules div{color:var(--ink-soft)}
+.skip{position:absolute;left:-9999px;top:8px;z-index:90;background:var(--choc);color:var(--ivory);padding:10px 16px}
+.skip:focus{left:12px}
 .lang{min-width:46px;height:42px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:12px;letter-spacing:.14em;cursor:pointer;transition:background .35s var(--ease),color .35s var(--ease)}
 .lang:hover{background:var(--champagne-lt);color:var(--choc);border-color:var(--champagne-lt)}
+.demo{position:fixed;left:12px;bottom:12px;z-index:58;margin:0;background:rgba(34,23,15,.9);color:var(--ivory);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border-radius:999px;pointer-events:none}
+@media (max-width:860px){.demo{bottom:calc(78px + env(safe-area-inset-bottom,0px));left:10px}}
 
-.ba-wrap{background:var(--white)}
-.ba-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,80px);align-items:start}
-.ba-grid>div{min-width:0}
-.hint{margin:22px 0 0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brown)}
-.hint::before{content:"⟷ ";letter-spacing:0}
-.ba-more{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
-.ba-more figure{margin:0;aspect-ratio:4/5;overflow:hidden;position:relative}
-.ba-more figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 12px 10px;font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.2;color:var(--ivory);background:linear-gradient(transparent,rgba(34,23,15,.75))}
-.ba-more img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.ba-more figure:hover img{transform:scale(1.06)}
-.ba-wide{margin:10px 0 0;overflow:hidden}
-.ba-wide img{width:100%;height:auto}
-.cmp{position:sticky;top:120px;aspect-ratio:16/10;overflow:hidden;user-select:none;-webkit-user-select:none;background:var(--choc);box-shadow:0 50px 80px -60px rgba(34,23,15,.7)}
+/* hero: slow crossfade, Ken Burns 1.00 to 1.05 over 14 s */
+.slides{inset:0}
+.slides figure{animation:none;opacity:0;transition:opacity 2.4s var(--ease)}
+.slides figure.on,.slides figure:first-child.on{opacity:1}
+.slides figure:first-child{animation:none}
+.slides img{transform:none;animation:kb2 14s ease-in-out infinite alternate}
+@keyframes kb2{from{transform:scale(1)}to{transform:scale(1.05)}}
+.seal{justify-self:end;text-align:right;display:grid;gap:4px;color:rgba(247,241,234,.9);text-decoration:none;font-size:15px}
+.seal b{display:block;font-family:var(--serif);font-size:62px;line-height:1;color:var(--ivory)}
+.seal .stars{color:var(--champagne-lt);letter-spacing:3px}
+.seal:hover span:last-child{text-decoration:underline}
+@media (max-width:820px){.seal{justify-self:start;text-align:left}.seal b{font-size:46px}}
+
+/* results */
+.res{background:var(--white)}
+.cases{margin:0 0 18px}
+.cases[hidden]{display:none}
+.cmp{position:relative;width:100%;aspect-ratio:2/1;max-height:72vh;overflow:hidden;user-select:none;-webkit-user-select:none;background:var(--choc);box-shadow:0 50px 80px -60px rgba(34,23,15,.7)}
 .cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cmp-before{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
 .cmp-line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--ivory);pointer-events:none}
 .cmp-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:var(--ivory);color:var(--choc);display:grid;place-items:center;font-size:20px;box-shadow:0 10px 30px -8px rgba(0,0,0,.45)}
 .cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;touch-action:pan-y}
-.cmp-lbl{position:absolute;top:14px;z-index:1;font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:rgba(34,23,15,.62);color:var(--ivory);padding:6px 12px;pointer-events:none}
+.cmp-lbl{position:absolute;top:14px;z-index:1;font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:rgba(34,23,15,.72);color:var(--ivory);padding:6px 12px;pointer-events:none}
 .cmp-lbl.l{left:14px}.cmp-lbl.r{right:14px}
-@media (max-width:900px){.ba-grid{grid-template-columns:1fr}.cmp{position:relative;top:0;order:-1}}
+@media (max-width:620px){.cmp{aspect-ratio:4/3}}
+.hint{margin:16px 0 0;text-align:center;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brown)}
+.res-more{max-width:820px;margin:40px auto 0;display:grid;gap:14px}
+.res-more figure{margin:0}
+.res-more img{width:100%;height:auto}
+.res-more figcaption{margin-top:10px;text-align:center;font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink-soft)}
 
-.compare{background:var(--ivory-2)}
-.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.vs>div{min-width:0;padding:clamp(24px,4vw,44px);background:var(--white)}
-.vs>div.on{background:var(--choc);color:var(--ivory)}
-.vs h3{font-size:clamp(28px,3vw,36px);margin-bottom:16px}
-.vs ul{margin:0;padding:0;list-style:none;display:grid;gap:12px;color:var(--ink-soft)}
-.vs .on ul{color:rgba(247,241,234,.85)}
-.vs li{display:grid;grid-template-columns:24px 1fr;gap:6px}
-.vs li::before{content:"—";color:var(--brown)}
-.vs .on li::before{content:"✦";color:var(--champagne)}
-@media (max-width:700px){.vs{grid-template-columns:1fr}}
+/* treatments: cards */
+.trt{background:var(--ivory)}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.tcard{background:var(--white);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0;transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
+.tcard-ph{aspect-ratio:16/10;overflow:hidden}
+.tcard-ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.tcard-ph.none{aspect-ratio:auto;padding:16px 22px 0}
+.tcard-cat{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brown)}
+.tcard-b{padding:10px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tcard-b h3{font-size:25px;line-height:1.15}
+.tcard-m{margin:0;font-size:13px;letter-spacing:.06em;color:var(--brown)}
+.tcard-d,.tcard-i{margin:0;font-size:15.5px;color:var(--ink-soft)}
+.tcard-i b{font-weight:500;color:var(--ink)}
+.tcard-go{margin-top:auto;align-self:flex-start;background:none;border:0;padding:12px 0 3px;min-height:44px;font:inherit;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brown);cursor:pointer;border-bottom:1px solid var(--champagne)}
+.tcard-go:hover{color:var(--choc);border-color:var(--choc)}
+@media (hover:hover){.tcard:hover{transform:translateY(-6px);box-shadow:0 34px 50px -34px rgba(34,23,15,.4)}.tcard:hover .tcard-ph img{transform:scale(1.04)}}
 
-.team .meth{display:flex;flex-wrap:wrap;gap:6px}
-.team .meth span{font-size:12.5px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft)}
-.cities{margin-top:24px;display:grid;gap:0}
-.cities p{margin:0;padding:14px 0;border-top:1px solid var(--line);font-size:15px;color:var(--ink-soft)}
-.cities b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;color:var(--ink)}
-.it .m .ask{letter-spacing:.1em;text-transform:uppercase;font-size:12px}
-.reelc{aspect-ratio:4/5}
-.reelc .play::before{content:"↗";margin:0;border:0;font-size:18px;color:var(--ivory)}
+/* method + Isabel */
+.who-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,6vw,90px);align-items:center}
+.who-grid>div{min-width:0}
+.who-ph{margin:0;position:relative;overflow:hidden;border-radius:280px 280px 4px 4px;aspect-ratio:4/5;max-width:500px;width:100%}
+.who-ph img{width:100%;height:100%;object-fit:cover}
+.who-ph figcaption{position:absolute;left:16px;bottom:16px;background:rgba(245,238,229,.95);padding:7px 14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.pillars{list-style:none}
+.isabel{margin-top:clamp(60px,8vw,100px);display:grid;grid-template-columns:170px 1fr;gap:clamp(22px,4vw,44px);align-items:center;padding:clamp(22px,4vw,40px);background:var(--white);border:1px solid var(--line)}
+.isabel>div{min-width:0}
+.isabel-ph{width:170px;height:212px;object-fit:cover;object-position:50% 25%;border-radius:999px 999px 6px 6px}
+.isabel p{color:var(--ink-soft)}
+.h-sm{font-size:clamp(34px,4vw,48px)}
+@media (max-width:880px){.who-grid{grid-template-columns:1fr}.who-ph{max-width:420px}}
+@media (max-width:560px){.isabel{grid-template-columns:1fr}.isabel-ph{width:130px;height:162px}}
+
+/* space gallery */
+.room:nth-child(even){margin-top:40px}
+.room:hover img{transform:none}
+@media (hover:hover){.room:hover img{transform:scale(1.04)}}
+.room img{transition:transform 1.2s var(--ease)}
+
+/* booking: calendar */
+.cal-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cal-h b{font-family:var(--serif);font-size:22px;font-weight:500;text-transform:capitalize}
+.cal-nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:22px;cursor:pointer}
+.cal-nav:disabled{opacity:.3;cursor:default}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-w{text-align:center;font-size:12px;color:var(--ink-soft);padding:4px 0}
+.cal-d{min-height:44px;border:1px solid var(--line);background:var(--ivory);font:inherit;font-size:15px;cursor:pointer;color:var(--ink);font-variant-numeric:tabular-nums;transition:background .3s,color .3s}
+.cal-d:hover:not(:disabled){border-color:var(--champagne)}
+.cal-d:disabled{background:transparent;border-color:transparent;color:#9a8b80;cursor:default}
+.cal-d[aria-pressed="true"]{background:var(--choc);border-color:var(--choc);color:var(--ivory)}
+.cal-none{margin:0;padding:16px 18px;background:var(--ivory);color:var(--ink-soft);font-size:15px}
+input[type=tel]{width:100%;font:inherit;font-weight:400;padding:12px 0;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);min-height:48px}
+input[type=tel]:focus{outline:none;border-color:var(--choc)}
+.privacy{margin:0;font-size:13.5px;color:var(--ink-soft);text-align:center}
+.slot-g[hidden]{display:none}
+
+/* FAQ + aftercare */
+.prep .in{align-items:start}
+.dotn{width:26px;height:26px;border-radius:50%;border:1px solid var(--champagne);display:grid;place-items:center;font-size:13px;color:var(--brown)}
+
+/* where */
+.cities3{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px}
+.cityc{background:var(--white);padding:clamp(22px,3vw,34px);display:grid;gap:12px;align-content:start;min-width:0}
+.cityc h3{font-size:30px}
+.cityc p{margin:0;color:var(--ink-soft)}
+.cityc .btn{justify-self:start;margin-top:8px}
+.cityc .status{color:var(--ok-fg)}.cityc .status.closed{color:var(--bad-fg)}
+@media (max-width:900px){.cities3{grid-template-columns:1fr}}
+.foot .fh{color:var(--ivory);letter-spacing:.14em;text-transform:uppercase;font-size:12px;margin:0 0 10px}
+.credit{display:block}
+
+/* entrances: visible by default; JS only hides items below the first screen until they arrive */
+.rv-js{opacity:0;transform:translateY(16px)}
+.rv-js.in{opacity:1;transform:none;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+@media (prefers-reduced-motion:reduce){.rv-js{opacity:1!important;transform:none!important}.slides img{animation:none}}
+
+/* ---- premium round: why, portrait, Instagram, messages, hover light ---- */
+.demo{position:static;display:inline-block;margin:0 0 18px;background:rgba(247,241,234,.14);border:1px solid rgba(232,211,180,.45);backdrop-filter:blur(6px);color:var(--champagne-lt);bottom:auto;left:auto}
+@media (max-width:860px){.demo{bottom:auto;left:auto}}
+.why{background:var(--ivory);padding-block:clamp(70px,9vw,120px)}
+.why-head{max-width:760px;margin-bottom:clamp(36px,5vw,56px)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.why-i{padding:28px 26px 30px 0;border-right:1px solid var(--line);min-width:0}
+.why-i+.why-i{padding-left:26px}
+.why-i:last-child{border-right:0}
+.why-i b{display:block;font-family:var(--serif);font-weight:400;font-style:italic;font-size:30px;color:var(--champagne);margin-bottom:14px}
+.why-i h3{font-size:25px;margin-bottom:8px}
+.why-i p{margin:0;color:var(--ink-soft);font-size:16px}
+@media (max-width:900px){.why-grid{grid-template-columns:1fr 1fr}.why-i:nth-child(2){border-right:0}.why-i:nth-child(3){padding-left:0}.why-i:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.why-grid{grid-template-columns:1fr}.why-i,.why-i+.why-i{padding:24px 0;border-right:0}.why-i+.why-i{border-top:1px solid var(--line)}}
+
+.res-more{max-width:none;grid-template-columns:1fr 1fr;gap:18px}
+.res-more figure.wide{grid-column:1/-1;max-width:860px;justify-self:center;width:100%}
+.res-more figure{overflow:hidden}
+@media (max-width:620px){.res-more{grid-template-columns:1fr}}
+
+.tcard-ph{position:relative;aspect-ratio:4/3}
+.tcard-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(34,23,15,.45))}
+.tcard-ph .tcard-cat{position:absolute;z-index:1;left:16px;bottom:14px;color:var(--ivory);font-size:11px}
+.tcard-ph.none .tcard-cat{position:static;color:var(--brown)}
+.tcard-ph.none::after{display:none}
+.tcard-b{padding-top:20px}
+
+.isabel{grid-template-columns:minmax(220px,340px) 1fr;align-items:center;background:var(--white)}
+.isabel-ph{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:999px 999px 6px 6px}
+.quote{margin:18px 0 22px;padding-left:18px;border-left:2px solid var(--champagne);font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.35;color:var(--ink)}
+.quote cite{display:block;margin-top:6px;font-family:var(--sans);font-style:normal;font-size:13px;letter-spacing:.06em;color:var(--ink-soft)}
+@media (max-width:560px){.isabel{grid-template-columns:1fr}.isabel-ph{width:min(100%,300px)}}
+
+.insta{background:var(--ivory-2)}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.igrid{grid-template-columns:1fr 1fr;gap:10px}}
+.igp{position:relative;display:block;overflow:hidden;aspect-ratio:4/5;background:var(--choc)}
+.igp img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.igp-go{position:absolute;left:50%;bottom:16px;transform:translate(-50%,8px);opacity:0;background:rgba(245,238,229,.95);color:var(--choc);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;white-space:nowrap;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+@media (hover:hover){.igp:hover img{transform:scale(1.04)}.igp:hover .igp-go{opacity:1;transform:translate(-50%,0)}}
+@media (hover:none){.igp-go{opacity:1;transform:translate(-50%,0)}}
+.fb-t{margin-top:clamp(50px,7vw,80px);color:var(--champagne-lt)}
+.fb{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.fb{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px}.fb .igp{flex:0 0 72%;scroll-snap-align:start}}
+
+/* soft light that follows the pointer on cards, and a slow sheen across buttons */
+.tcard,.why-i,.cityc,.igp,.res-more figure{--mx:50%;--my:50%}
+.tcard{position:relative;overflow:hidden}
+.tcard::before,.cityc::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .6s var(--ease);background:radial-gradient(420px circle at var(--mx) var(--my),rgba(232,211,180,.28),transparent 60%);z-index:2}
+.cityc{position:relative;overflow:hidden}
+@media (hover:hover){.tcard:hover::before,.cityc:hover::before{opacity:1}}
+.igp::before,.res-more figure::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,248,238,.28) 50%,transparent 65%);transform:translateX(-120%);transition:transform 1.4s var(--ease)}
+.res-more figure{position:relative}
+@media (hover:hover){.igp:hover::before,.res-more figure:hover::before{transform:translateX(120%)}}
+.btn-champ::after,.btn-wa::after,.btn-fill::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);transition:left 1s var(--ease);pointer-events:none}
+@media (hover:hover){.btn-champ:hover::after,.btn-wa:hover::after,.btn-fill:hover::after{left:130%}}
+@media (prefers-reduced-motion:reduce){.igp::before,.res-more figure::before,.btn::after{display:none}}
+
+/* ---- final round: hero tags, results footer, finder, card details, booking notes ---- */
+.hero-tags{list-style:none;margin:-8px 0 28px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.hero-tags li{font-size:13px;letter-spacing:.06em;padding:6px 14px;border:1px solid rgba(232,211,180,.5);border-radius:999px;color:var(--ivory);background:rgba(34,23,15,.25);backdrop-filter:blur(4px)}
+.hero-sub{margin-bottom:18px}
+.res-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 30px;margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.res-foot p{margin:0;max-width:60ch;font-size:15px;color:var(--ink-soft)}
+
+.finder{background:var(--white);border-block:1px solid var(--line)}
+.finder-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.finder-in>div{min-width:0}
+.finder-in h2{font-size:clamp(36px,4.6vw,58px)}
+.finder-in .note{margin-top:16px}
+.finder-opts{display:grid;gap:8px}
+.finder-o{text-align:left;font:inherit;font-size:17px;padding:16px 20px;min-height:56px;border:1px solid var(--line);background:var(--ivory);color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:border-color .35s var(--ease),background .35s var(--ease),transform .35s var(--ease)}
+.finder-o::after{content:"→";color:var(--brown);transition:transform .35s var(--ease)}
+.finder-o:hover{border-color:var(--champagne)}
+.finder-o:hover::after{transform:translateX(4px)}
+.finder-o[aria-pressed="true"]{background:var(--choc);border-color:var(--choc);color:var(--ivory)}
+.finder-o[aria-pressed="true"]::after{color:var(--champagne-lt)}
+.finder-out{margin-top:16px;padding:22px 24px;background:var(--ivory-2);border-left:2px solid var(--champagne);animation:enter .5s var(--ease)}
+.finder-out[hidden]{display:none}
+.finder-out p{margin:0 0 14px;color:var(--ink)}
+.finder-ctas{display:flex;flex-wrap:wrap;gap:10px}
+.finder-ctas .btn{min-height:46px}
+@media (max-width:880px){.finder-in{grid-template-columns:1fr}}
+
+.tcard-ill{position:absolute;z-index:1;top:12px;right:12px;font-size:10.5px;letter-spacing:.08em;padding:4px 9px;border-radius:999px;background:rgba(245,238,229,.9);color:var(--ink)}
+.tcard-star{display:inline-block;margin-right:8px;padding:2px 9px;border-radius:999px;background:var(--choc);color:var(--champagne-lt);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.tcard.dest{border-color:var(--champagne)}
+.tcard-x{border-top:1px solid var(--line);padding-top:10px;font-size:15px;color:var(--ink-soft)}
+.tcard-x summary{cursor:pointer;list-style:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brown);min-height:32px;display:flex;align-items:center;justify-content:space-between}
+.tcard-x summary::-webkit-details-marker{display:none}
+.tcard-x summary::after{content:"+";font-size:18px;transition:transform .35s var(--ease)}
+.tcard-x[open] summary::after{transform:rotate(45deg)}
+.tcard-x b{display:block;margin:10px 0 4px;font-weight:500;color:var(--ink);font-size:14px}
+.tcard-x ul{margin:0;padding-left:18px}
+.tcard-x p{margin:0}
+
+.err{margin:8px 0 0;font-size:14px;color:var(--bad-fg)}
+.err[hidden]{display:none}
+input[aria-invalid="true"]{border-color:var(--bad-fg)}
+.pref{margin:0;padding:12px 16px;border:1px dashed var(--champagne);font-size:14.5px;color:var(--ink)}
+.summary p{white-space:pre-line}
+
+/* contrast: numerals and step marks in terracotta (5:1 or more on every background) */
+.why-i b,.pillars li b,.fs-t i,.dotn{color:var(--brown)}
+
+/* hero portrait: Isabel is the first thing you see */
+.hero-isa{justify-self:end;display:grid;justify-items:end;gap:14px;text-align:right}
+.hero-por{margin:0;width:clamp(200px,22vw,300px);aspect-ratio:4/5;overflow:hidden;border-radius:999px 999px 6px 6px;border:1px solid rgba(232,211,180,.6);box-shadow:0 40px 70px -30px rgba(0,0,0,.6);animation:enter 1.2s var(--ease) both .2s}
+.hero-por img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.hero-who{margin:0;display:grid;color:rgba(247,241,234,.85);font-size:14px}
+.hero-who b{font-family:var(--serif);font-weight:500;font-size:24px;color:var(--ivory)}
+.hero-isa .seal{justify-self:end}
+@media (max-width:820px){
+  .hero-isa{order:-1;justify-self:start;justify-items:start;text-align:left;grid-template-columns:auto 1fr;align-items:center;column-gap:16px}
+  .hero-por{width:96px;grid-row:span 2}
+  .hero-who b{font-size:21px}
+  .hero-isa .seal{justify-self:start;text-align:left;display:flex;align-items:baseline;gap:8px}
+  .hero-isa .seal b{font-size:30px}
+}
+
+@media (max-width:820px){.hero-mono{font-size:56px}.hero-name{margin-bottom:18px}.hero .in{padding-block:104px 84px;gap:22px}.demo{margin-bottom:12px}}
 </style>
 
+<a class="skip" href="#resultados" data-fr="Aller au contenu">Saltar para o conteúdo</a>
 <header class="top gut" id="top">
   <div class="in">
-    <a class="logo" href="#inicio" aria-label="Reviv, início"><span class="mono">Reviv</span><span class="name"><span>Estética</span><span>Integrada</span></span></a>
+    <a class="logo" href="#inicio"><span class="mono">Reviv</span><span class="name"><span>Estética</span><span>Integrada</span></span></a>
     <nav class="nav" aria-label="Menu">
       <a href="#resultados" data-fr="Résultats">Resultados</a>
-      <a href="#servicos" data-fr="Soins">Serviços</a>
-      <a href="#metodo" data-fr="Méthode">Método</a>
+      <a href="#tratamentos" data-fr="Soins">Tratamentos</a>
       <a href="#isabel">Isabel</a>
       <a href="#avaliacoes" data-fr="Avis">Avaliações</a>
-      <a href="#visitar" data-fr="Adresses">Visitar</a>
+      <a href="#contactos" data-fr="Adresses">Onde estamos</a>
     </nav>
     <div class="top-r">
-      <button class="lang" type="button" id="lang" aria-label="Mudar idioma / Changer de langue">FR</button>
+      <button class="lang" type="button" id="lang">FR</button>
       <a class="btn" href="#marcar" data-fr="Réserver">Marcar</a>
       <button class="burger" type="button" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="overlay"><i></i><i></i></button>
     </div>
@@ -626,169 +827,157 @@ footer{background:var(--choc-2);color:rgba(247,241,234,.78);padding-block:70px 1
 </header>
 <nav class="overlay" id="overlay" aria-label="Menu principal">
   <a class="big" href="#resultados" data-fr="Résultats">Resultados</a>
-  <a class="big" href="#servicos" data-fr="Soins">Serviços</a>
-  <a class="big" href="#metodo" data-fr="Méthode">Método</a>
+  <a class="big" href="#tratamentos" data-fr="Soins">Tratamentos</a>
   <a class="big" href="#isabel">Isabel</a>
   <a class="big" href="#avaliacoes" data-fr="Avis">Avaliações</a>
   <a class="big" href="#marcar" data-fr="Réserver">Marcar</a>
-  <a class="big" href="#visitar" data-fr="Adresses">Visitar</a>
+  <a class="big" href="#contactos" data-fr="Adresses">Onde estamos</a>
   <div class="ov-foot"><a class="btn btn-champ" href="#marcar" data-fr="Réserver une évaluation">Marcar avaliação</a><a class="btn btn-light" href="https://wa.me/351918910174" target="_blank" rel="noopener">WhatsApp</a></div>
 </nav>
 
 <main id="inicio">
   <section class="hero gut" aria-label="Apresentação">
-    <div class="slides" id="slides" aria-hidden="true">
-      <figure><img src="img/hero/f07.jpg" alt="" style="object-position:50% 30%"></figure>
-      <figure><img src="img/hero/f05.jpg" alt="" style="object-position:50% 40%"></figure>
-      <figure><img src="img/hero/f02.jpg" alt="" style="object-position:50% 55%"></figure>
-      <figure><img src="img/hero/f09.jpg" alt="" style="object-position:50% 25%"></figure>
-      <figure><img src="img/hero/f01.jpg" alt="" style="object-position:50% 45%"></figure>
-    </div>
+    <div class="slides" id="slides" aria-hidden="true"></div>
     <div class="in">
       <div>
-        <p class="hero-mono enter">Reviv</p>
-        <p class="hero-name enter d1" data-fr="Isabel Miranda · Torres Vedras · Cascais · Genève">Isabel Miranda · Torres Vedras · Cascais · Genebra</p>
-        <h1 class="enter d2" data-fr="Votre peau, <em>à nouveau vôtre.</em>">A sua pele, <em>de novo sua.</em></h1>
-        <p class="hero-sub enter d3" data-fr="Dépigmentation des sourcils, détatouage et soins de la peau au laser, avec une méthode qui respecte le poil naturel et le temps de la peau.">Despigmentação de sobrancelhas, remoção de tatuagens e cuidados de pele a laser, com um método que respeita o pelo natural e o tempo da pele.</p>
-        <div class="hero-ctas enter d4">
+        <p class="demo" data-fr="Proposition de démonstration">Proposta de demonstração</p>
+        <p class="hero-mono">Reviv</p>
+        <p class="hero-name" data-fr="Isabel Miranda · Torres Vedras · Cascais · Genève">Isabel Miranda · Torres Vedras · Cascais · Genebra</p>
+        <h1 data-fr="Votre peau, à nouveau <em>vôtre</em>.">A sua pele, de novo <em>sua</em>.</h1>
+        <p class="hero-sub" data-fr="Dépigmentation des sourcils, détatouage, épilation et soins de la peau au laser, avec une évaluation avant chaque traitement.">Despigmentação de sobrancelhas, remoção de tatuagens, depilação e cuidados de pele a laser, com uma avaliação antes de cada tratamento.</p>
+        <ul class="hero-tags" aria-label="Tratamentos principais">
+          <li data-fr="Dépigmentation des sourcils">Despigmentação de sobrancelhas</li>
+          <li data-fr="Détatouage">Remoção de tatuagens</li>
+          <li data-fr="Soins de la peau au laser">Pele a laser</li>
+        </ul>
+        <div class="hero-ctas">
           <a class="btn btn-champ" href="#marcar" data-fr="Réserver une évaluation">Marcar avaliação</a>
-          <a class="btn btn-light" href="#resultados"><span data-fr="Voir les résultats">Ver resultados</span> <span class="arr">→</span></a>
-        </div>
-        <div class="quick enter d5">
-          <a href="https://wa.me/351918910174" target="_blank" rel="noopener"><span class="dot">I</span>Isabel · 918 910 174</a>
-          <a href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener"><span class="dot">@</span>revivesteticaintegrada</a>
+          <a class="btn btn-light" href="#resultados"><span data-fr="Voir les résultats">Ver resultados</span> <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="hero-side enter d4">
-        <div><span class="stars">★★★★★</span><b>5,0</b><span data-fr="15 avis Google">15 avaliações no Google</span></div>
-        <span id="hstatus" class="status"><i></i><span></span></span>
+      <div class="hero-isa">
+        <figure class="hero-por"><img src="img/novas/isabel-retrato.jpg" srcset="img/novas/isabel-retrato-m.jpg 700w, img/novas/isabel-retrato.jpg 794w" sizes="(max-width:820px) 132px, 300px" alt="Isabel Miranda, especialista da Reviv" width="794" height="794" fetchpriority="high"></figure>
+        <p class="hero-who"><b>Isabel Miranda</b><span data-fr="Spécialiste en laser et dépigmentation">Especialista em laser e despigmentação</span></p>
+        <a class="seal" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener">
+          <span class="stars" aria-hidden="true">★★★★★</span><b>5,0</b><span data-fr="15 avis sur Google">15 avaliações no Google</span>
+        </a>
       </div>
     </div>
-    <a class="cue" href="#resultados"><span></span><em data-fr="Découvrir">Explorar</em></a>
   </section>
 
-  <div class="trust gut" aria-label="Em números">
+  <section id="porque" class="why gut" aria-label="Porquê a Reviv">
     <div class="in">
-      <div><b>+1.000</b><span data-fr="interventions réalisées">procedimentos realizados</span></div>
-      <div><b>5,0</b><span data-fr="dans tous les avis Google">em todas as avaliações no Google</span></div>
-      <div><b>3</b><span data-fr="villes : Torres Vedras, Cascais, Genève">cidades: Torres Vedras, Cascais, Genebra</span></div>
-      <div><b>2–5</b><span data-fr="séances pour la plupart des sourcils">sessões na maioria das sobrancelhas</span></div>
-    </div>
-  </div>
-
-  <div class="marquee" aria-hidden="true"><div class="track" id="marq"></div></div>
-
-  <section id="resultados" class="ba-wrap gut">
-    <div class="in ba-grid">
-      <div class="ba-txt">
-        <p class="eyebrow" data-fr="Résultats réels">Resultados reais</p>
-        <h2 class="split" data-fr="Le pigment s’en va, <em>le poil reste.</em>">O pigmento sai, <em>o pelo fica.</em></h2>
-        <p class="note" style="margin-top:20px" data-fr="Une ancienne micropigmentation foncée et froide, éliminée au laser. Les poils naturels restent intacts et la peau est prête pour un nouveau dessin ou pour rester naturelle.">Uma micropigmentação antiga, escura e fria, removida a laser. Os pelos naturais ficam intactos e a pele fica pronta para um novo desenho, ou para ficar natural.</p>
-        <p class="hint" data-fr="Faites glisser pour comparer">Arraste para comparar</p>
-        <div class="ba-more">
-          <figure><img src="img/g/f02.jpg" alt="Braço depois da remoção de tatuagem, com a foto do antes no telemóvel" loading="lazy"><figcaption data-fr="Tatouage : avant sur l’écran, après sur le bras">Tatuagem: antes no ecrã, depois no braço</figcaption></figure>
-          <figure><img src="img/g/f06.jpg" alt="Laser a clarear uma tatuagem" loading="lazy"><figcaption data-fr="Le laser en séance">O laser em sessão</figcaption></figure>
-        </div>
-        <figure class="ba-wide"><img src="img/g/f04w.jpg" alt="Quatro sobrancelhas antes e depois da despigmentação" loading="lazy"></figure>
+      <div class="why-head">
+        <p class="eyebrow" data-fr="Pourquoi Isabel">Porquê a Isabel</p>
+        <h2 data-fr="Spécialiste de ce qu’il faut <em>retirer</em>.">Especialista no que é preciso <em>remover</em>.</h2>
       </div>
+      <div class="why-grid">
+        <div class="why-i rv"><b>01</b><h3 data-fr="Spécialité">Especialidade</h3><p data-fr="La dépigmentation des sourcils et le détatouage sont le cœur de son travail, pas un service de plus.">A despigmentação de sobrancelhas e a remoção de tatuagens são o centro do trabalho dela, não mais um serviço da lista.</p></div>
+        <div class="why-i rv"><b>02</b><h3 data-fr="L’évaluation d’abord">Avaliação primeiro</h3><p data-fr="Avant de traiter, il faut comprendre. Chaque cas commence par une évaluation et un plan de séances.">Antes de tratar, é preciso entender. Cada caso começa com uma avaliação e um plano de sessões.</p></div>
+        <div class="why-i rv"><b>03</b><h3 data-fr="5,0 sur Google">5,0 no Google</h3><p data-fr="15 avis, tous à 5 étoiles. Les clientes parlent de clarté, de soin et de résultats.">15 avaliações, todas com 5 estrelas. As clientes falam de clareza, cuidado e resultados.</p></div>
+        <div class="why-i rv"><b>04</b><h3 data-fr="Trois villes">Três cidades</h3><p data-fr="Torres Vedras, Cascais et Genève. Vous réservez où cela vous arrange le mieux.">Torres Vedras, Cascais e Genebra. Marca onde lhe der mais jeito.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultados" class="res gut">
+    <div class="in">
+      <div class="head-row">
+        <div><p class="eyebrow" data-fr="Résultats réels">Resultados reais</p><h2 data-fr="Le pigment s’en va, le poil <em>reste</em>.">O pigmento sai, o pelo <em>fica</em>.</h2></div>
+        <p class="note" id="casetext"></p>
+      </div>
+      <div class="cases" id="cases" role="group" aria-label="Casos"></div>
       <div class="cmp" id="cmp" style="--pos:50%">
-        <img src="img/g/depois-sobrancelha.jpg" alt="Depois: sobrancelha com os pelos naturais, sem pigmento">
-        <div class="cmp-before"><img src="img/g/antes-sobrancelha.jpg" alt="Antes: sobrancelha com micropigmentação escura e manchada"></div>
+        <img id="cmpafter" src="" alt="">
+        <div class="cmp-before"><img id="cmpbefore" src="" alt=""></div>
         <span class="cmp-lbl l" data-fr="Avant">Antes</span><span class="cmp-lbl r" data-fr="Après">Depois</span>
         <div class="cmp-line" aria-hidden="true"><span class="cmp-knob">⟷</span></div>
         <input type="range" id="cmprange" min="0" max="100" value="50" aria-label="Comparar antes e depois">
       </div>
+      <p class="hint" data-fr="Faites glisser pour comparer">Arraste para comparar</p>
+      <div class="res-more" id="resmore"></div>
+      <div class="res-foot">
+        <p data-fr="Résultats de clientes d’Isabel. Chaque peau réagit différemment : le nombre de séances est défini lors de l’évaluation.">Resultados de clientes da Isabel. Cada pele reage de forma diferente: o número de sessões é definido na avaliação.</p>
+        <a class="btn btn-fill" href="#marcar" data-fr="Réserver une évaluation">Marcar avaliação</a>
+      </div>
     </div>
   </section>
 
-  <section id="metodo" class="mani gut">
+  <section id="comecar" class="finder gut">
+    <div class="in finder-in">
+      <div>
+        <p class="eyebrow" data-fr="Par où commencer">Por onde começar</p>
+        <h2 data-fr="Qu’aimeriez-vous <em>changer</em> ?">O que gostaria de <em>mudar</em>?</h2>
+        <p class="note" data-fr="Choisissez une réponse. Nous vous montrons les soins liés ; c’est Isabel qui confirme le bon choix lors de l’évaluation.">Escolha uma resposta. Mostramos os tratamentos relacionados; quem confirma o tratamento certo é a Isabel, na avaliação.</p>
+      </div>
+      <div>
+        <div class="finder-opts" id="finder" role="group" aria-label="O que pretende"></div>
+        <div class="finder-out" id="finderout" aria-live="polite" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tratamentos" class="trt gut">
     <div class="in">
-      <div class="stack" data-speed="0.05">
-        <img class="a rv-img" src="img/hero/f07.jpg" alt="A Isabel a aplicar laser no rosto de uma cliente">
-        <img class="b rv-img" src="img/g/f08.jpg" alt="Sobrancelha antes e depois da despigmentação" data-speed="-0.08">
-        <img class="c rv-img" src="img/g/f06.jpg" alt="Laser a remover uma tatuagem" data-speed="0.1">
+      <div class="head-row">
+        <div><p class="eyebrow" data-fr="Les soins">Os tratamentos</p><h2 data-fr="Du laser au soin de la <em>peau</em>.">Do laser ao cuidado da <em>pele</em>.</h2></div>
+        <p class="note" data-fr="Chaque traitement commence par une évaluation. Le prix dépend de la zone et du nombre de séances.">Cada tratamento começa com uma avaliação. O preço depende da zona e do número de sessões.</p>
       </div>
-      <div class="mani-txt">
-        <p class="eyebrow" data-fr="La méthode">O método</p>
-        <h2 class="split" data-fr="La technique juste, <em>au bon moment.</em>">A técnica certa, <em>no tempo certo.</em></h2>
-        <ul class="pillars">
-          <li><b>i</b><div><h3 data-fr="D’abord l’évaluation">Primeiro, a avaliação</h3><p data-fr="Avant toute intervention, on comprend le pigment, son évolution, la peau et la meilleure stratégie. Parfois retirer, parfois corriger, parfois attendre.">Antes de qualquer intervenção, percebemos o pigmento, como evoluiu, a pele e a melhor estratégia. Às vezes remover, às vezes corrigir, às vezes esperar.</p></div></li>
-          <li><b>ii</b><div><h3 data-fr="Un laser qui respecte le poil">Laser que respeita o pelo</h3><p data-fr="Laser de dernière génération et méthode centrée sur la santé des poils : le pigment sort, la structure naturelle reste.">Laser de última geração e um método focado na saúde dos pelos: o pigmento sai, a estrutura natural fica.</p></div></li>
-          <li><b>iii</b><div><h3 data-fr="Le temps de la peau">O tempo da pele</h3><p data-fr="Plus de séances ne veut pas dire plus de résultat. Entre deux séances, la peau récupère et continue d’éliminer le pigment.">Mais sessões não significam mais evolução. Entre cada sessão, a pele recupera e continua a eliminar o pigmento.</p></div></li>
-        </ul>
-      </div>
+      <div class="tabs" id="tfilter" role="group" aria-label="Filtrar tratamentos"></div>
+      <div class="tgrid" id="tgrid"></div>
     </div>
   </section>
 
-  <section class="compare gut">
+  <section id="isabel" class="who gut">
     <div class="in">
-      <div class="head-row"><div><p class="eyebrow" data-fr="Pourquoi le laser">Porquê laser</p><h2 class="split" data-fr="Retirer sans <em>abîmer.</em>">Remover sem <em>agredir.</em></h2></div></div>
-      <div class="vs">
-        <div><h3 data-fr="Autres méthodes">Outros métodos</h3><ul>
-          <li data-fr="Peuvent laisser des cicatrices et abîmer la peau">Podem causar cicatrizes e danos na pele</li>
-          <li data-fr="Résultats imprévisibles et lents">Resultados imprevisíveis e demorados</li>
-          <li data-fr="Plus de risque d’altérer la texture de la peau">Maior risco de alterar a textura da pele</li></ul></div>
-        <div class="on"><h3 data-fr="Dépigmentation au laser">Despigmentação a laser</h3><ul>
-          <li data-fr="La méthode la plus sûre et efficace">O método mais seguro e eficaz</li>
-          <li data-fr="Retire le pigment sans toucher aux poils naturels">Remove o pigmento sem afetar os pelos naturais</li>
-          <li data-fr="Récupération rapide, résultats en moins de séances">Recuperação rápida e resultados em menos sessões</li></ul></div>
+      <div class="who-grid">
+        <figure class="who-ph rv" id="metodoph"></figure>
+        <div>
+          <p class="eyebrow" data-fr="Comment ça marche">Como funciona</p>
+          <h2 data-fr="Simple pour vous, clair <em>du début à la fin</em>.">Simples para si, claro <em>do início ao fim</em>.</h2>
+          <ol class="pillars">
+            <li class="rv"><b>1</b><div><h3 data-fr="Envoyez une photo">Envie uma foto</h3><p data-fr="Sur WhatsApp, de la zone à traiter. Isabel vous donne un premier avis.">Pelo WhatsApp, da zona a tratar. A Isabel dá-lhe uma primeira opinião.</p></div></li>
+            <li class="rv"><b>2</b><div><h3 data-fr="L’évaluation">A avaliação</h3><p data-fr="Avant toute intervention, Isabel observe le pigment, la peau et son histoire, et propose un plan : retirer, corriger ou attendre.">Antes de qualquer intervenção, a Isabel observa o pigmento, a pele e o seu histórico, e propõe um plano: remover, corrigir ou esperar.</p></div></li>
+            <li class="rv"><b>3</b><div><h3 data-fr="La séance">A sessão</h3><p data-fr="Traitement au laser, avec protection des yeux et explication de chaque étape.">Tratamento a laser, com proteção ocular e cada passo explicado.</p></div></li>
+            <li class="rv"><b>4</b><div><h3 data-fr="Le suivi">O acompanhamento</h3><p data-fr="Entre deux séances, la peau récupère. Isabel suit l’évolution et répond à vos questions sur WhatsApp.">Entre sessões, a pele recupera. A Isabel acompanha a evolução e responde às suas dúvidas pelo WhatsApp.</p></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="isabel rv">
+        <img class="isabel-ph" src="img/ig/DeeOikBEpSi.jpg" srcset="img/ig/DeeOikBEpSi-m.jpg 394w, img/ig/DeeOikBEpSi.jpg 900w" sizes="(max-width:560px) 300px, 340px" alt="A Isabel Miranda de bata, no espaço da Reviv" width="900" height="1600" loading="lazy">
+        <div>
+          <p class="eyebrow" data-fr="La spécialiste">A especialista</p>
+          <h2 class="h-sm">Isabel <em>Miranda</em></h2>
+          <p data-fr="Spécialiste de la dépigmentation des sourcils et du détatouage au laser, entre Torres Vedras, Cascais et Genève. Ses clientes la décrivent ainsi : elle explique chaque étape, répond à chaque question et accompagne jusqu’à la fin du traitement.">Especialista em despigmentação de sobrancelhas e remoção de tatuagens a laser, entre Torres Vedras, Cascais e Genebra. As clientes descrevem-na assim: explica cada etapa, responde a todas as dúvidas e acompanha até ao fim do tratamento.</p>
+          <blockquote class="quote" data-fr="« Elle explique chaque étape du processus avec clarté. » <cite>Sophia Miranda, avis Google</cite>">“Explica cada etapa do processo com clareza.” <cite>Sophia Miranda, avaliação no Google</cite></blockquote>
+          <div class="p-links"><a class="btn btn-wa" href="https://wa.me/351918910174" target="_blank" rel="noopener">WhatsApp 918 910 174</a><a class="link" href="tel:+351918910174" data-fr="Appeler">Ligar</a><a class="link" href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">Instagram</a></div>
+        </div>
       </div>
     </div>
-  </section>
-
-  <section id="servicos" class="cat-wrap" style="padding-bottom:0">
-    <div class="in gut head-row">
-      <div><p class="eyebrow" data-fr="Les soins">Os serviços</p><h2 class="split" data-fr="Du laser <em>au soin de la peau.</em>">Do laser <em>ao cuidado da pele.</em></h2></div>
-      <p class="note" data-fr="Chaque traitement commence par une évaluation. Le prix dépend du pigment, de la zone et du nombre de séances.">Cada tratamento começa com uma avaliação. O preço depende do pigmento, da zona e do número de sessões.</p>
-    </div>
-    <div class="catnav"><div class="in gut" id="catnav" role="tablist" aria-label="Especialidades"></div></div>
-    <div class="gut"><div class="in" id="cats"></div></div>
   </section>
 
   <section id="espaco" class="space">
     <div class="in gut head-row">
-      <div><p class="eyebrow" data-fr="L’espace">O espaço</p><h2 class="split" data-fr="Calme, propre, <em>accueillant.</em>">Calmo, limpo, <em>acolhedor.</em></h2></div>
+      <div><p class="eyebrow" data-fr="L’espace">O espaço</p><h2 data-fr="Shopping Banix, <em>Torres Vedras</em>.">Shopping Banix, <em>Torres Vedras</em>.</h2></div>
       <div class="ctrl"><button class="arrow" type="button" data-scroll="rooms" data-dir="-1" aria-label="Anterior">←</button><button class="arrow" type="button" data-scroll="rooms" data-dir="1" aria-label="Seguinte">→</button></div>
     </div>
-    <div class="hscroll" id="rooms">
-      <figure class="room"><div class="ph"><img src="img/g/f05.jpg" alt="Montra da Reviv no Shopping Banix" loading="lazy"></div><figcaption><b data-fr="La vitrine">A montra</b><span data-fr="Shopping Banix, 1er étage, boutique 102, Torres Vedras.">Shopping Banix, 1.º andar, loja 102, Torres Vedras.</span></figcaption></figure>
-      <figure class="room"><div class="ph"><img src="img/g/f07.jpg" alt="Tratamento a laser no rosto" loading="lazy"></div><figcaption><b data-fr="Laser de dernière génération">Laser de última geração</b><span data-fr="Protection des yeux et protocole à chaque séance.">Proteção ocular e protocolo em cada sessão.</span></figcaption></figure>
-      <figure class="room"><div class="ph"><img src="img/g/f01.jpg" alt="Corredor de acesso à Reviv" loading="lazy"></div><figcaption><b data-fr="L’accès">O acesso</b><span data-fr="Calme et discret, à l’intérieur du centre.">Calmo e discreto, dentro do centro.</span></figcaption></figure>
-      <figure class="room"><div class="ph"><img src="img/g/f03.jpg" alt="Peeling de carbono no rosto" loading="lazy"></div><figcaption><b>Peeling Hollywood</b><span data-fr="Un des soins laser pour la peau.">Um dos tratamentos de pele a laser.</span></figcaption></figure>
-      <figure class="room"><div class="ph"><img src="img/g/f09.jpg" alt="Porta da Reviv com a lista de tratamentos" loading="lazy"></div><figcaption><b data-fr="Tous les soins">Todos os tratamentos</b><span data-fr="De l’analyse 3D de la peau au laser.">Da análise 3D da pele ao laser.</span></figcaption></figure>
-    </div>
+    <div class="hscroll" id="rooms"></div>
   </section>
 
-  <section id="instagram" class="insta">
-    <div class="in gut head-row">
-      <div><p class="eyebrow" data-fr="Sur Instagram">No Instagram</p><h2 class="split" data-fr="Conseils, avis <em>et résultats.</em>">Conselhos, feedbacks <em>e resultados.</em></h2></div>
-      <div class="ctrl"><button class="arrow" type="button" data-scroll="igrow" data-dir="-1" aria-label="Anterior">←</button><button class="arrow" type="button" data-scroll="igrow" data-dir="1" aria-label="Seguinte">→</button></div>
-    </div>
-    <div class="igrow" id="igrow"></div>
-    <div class="in gut" style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px">
-      <a class="btn" href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">Instagram @revivesteticaintegrada</a>
-      <a class="btn" href="https://www.facebook.com/revivesteticaintegrada/" target="_blank" rel="noopener">Facebook</a>
-    </div>
-  </section>
-  <dialog id="igd" aria-label="Publicação do Instagram"><div class="frame"><iframe id="igframe" title="Publicação do Instagram" scrolling="no"></iframe></div><div class="igopen"><a class="btn btn-light" id="igopen" href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener" data-fr="Ouvrir sur Instagram">Abrir no Instagram</a></div><button class="x" type="button" id="igx" aria-label="Fechar">✕</button></dialog>
-
-  <section id="isabel" class="team gut">
+  <section id="instagram" class="insta gut">
     <div class="in">
-      <div class="team-ph"><img class="rv-img" src="img/hero/f07.jpg" alt="A Isabel Miranda durante um tratamento a laser" data-speed="0.06"></div>
-      <div>
-        <p class="eyebrow" data-fr="La spécialiste">A especialista</p>
-        <h2 class="split">Isabel <em>Miranda.</em></h2>
-        <p style="margin:22px 0 0;color:var(--ink-soft)" data-fr="Spécialiste des procédures au laser, avec des années d’expérience dans l’élimination sûre des pigments indésirables. Elle explique chaque étape, répond à chaque question et accompagne chaque cliente jusqu’au résultat.">Especialista em procedimentos a laser, com anos de experiência na remoção segura e eficaz de pigmentos indesejados. Explica cada etapa, responde a todas as dúvidas e acompanha cada cliente até ao resultado.</p>
-        <div class="meth" style="margin:18px 0"><span data-fr="Dépigmentation des sourcils">Despigmentação de sobrancelhas</span><span data-fr="Détatouage">Remoção de tatuagens</span><span data-fr="Protocole exosomes">Protocolo com exossomos</span><span>Peeling Hollywood</span><span data-fr="Micropigmentation">Micropigmentação</span></div>
-        <div class="p-links"><a class="btn btn-wa" href="https://wa.me/351918910174" target="_blank" rel="noopener">WhatsApp 918 910 174</a><a class="link" href="tel:+351918910174" data-fr="Appeler">Ligar</a><a class="ig link" href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">@revivesteticaintegrada</a></div>
+      <div class="head-row">
+        <div><p class="eyebrow" data-fr="Sur Instagram">No Instagram</p><h2 data-fr="Conseils et vrais <em>cas</em>.">Conselhos e casos <em>reais</em>.</h2></div>
+        <a class="btn" href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">@revivesteticaintegrada</a>
       </div>
+      <div class="igrid" id="igrid"></div>
     </div>
   </section>
 
   <section id="avaliacoes" class="rev-wrap gut">
     <div class="in">
       <div class="head-row">
-        <div><p class="eyebrow" data-fr="Avis Google">Avaliações no Google</p><h2 class="split" data-fr="Ce que disent <em>les clientes.</em>">O que dizem <em>as clientes.</em></h2></div>
+        <div><p class="eyebrow" data-fr="Avis Google">Avaliações no Google</p><h2 data-fr="Ce que disent les <em>clientes</em>.">O que dizem as <em>clientes</em>.</h2></div>
         <div class="score"><b>5,0</b><span>★★★★★<br><span data-fr="15 avis">15 avaliações</span></span></div>
       </div>
       <div class="revs" id="revs" tabindex="0" aria-label="Avaliações"></div>
@@ -796,9 +985,10 @@ footer{background:var(--choc-2);color:rgba(247,241,234,.78);padding-block:70px 1
         <button class="arrow" type="button" data-scroll="revs" data-dir="-1" aria-label="Anterior">←</button>
         <button class="arrow" type="button" data-scroll="revs" data-dir="1" aria-label="Seguinte">→</button>
         <span class="sp"></span>
-        <a class="btn btn-light" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener" data-fr="Laisser un avis">Deixar uma avaliação</a>
-        <a class="btn btn-light" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener" data-fr="Voir sur Google">Ver no Google</a>
+        <a class="btn btn-light" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener" data-fr="Voir tous les avis sur Google">Ver todas no Google</a>
       </div>
+      <p class="eyebrow fb-t" data-fr="Messages reçus">Mensagens que a Isabel recebe</p>
+      <div class="fb" id="fb"></div>
     </div>
   </section>
 
@@ -806,158 +996,90 @@ footer{background:var(--choc-2);color:rgba(247,241,234,.78);padding-block:70px 1
     <div class="in book">
       <div class="book-txt">
         <p class="eyebrow" data-fr="Réserver">Marcar</p>
-        <h2 class="split" data-fr="Votre évaluation, <em>en quatre étapes.</em>">A sua avaliação, <em>em quatro passos.</em></h2>
-        <p style="margin-top:22px" data-fr="Choisissez la ville, le soin, le jour et l’heure. La demande arrive complète sur le WhatsApp de l’Isabel, qui vous confirme.">Escolha a cidade, o tratamento, o dia e a hora. O pedido chega completo ao WhatsApp da Isabel, que confirma consigo.</p>
-        <ol class="steps-n">
-          <li><span data-fr="La ville">A cidade</span></li>
-          <li><span data-fr="Le soin">O tratamento</span></li>
-          <li><span data-fr="Le jour et l’heure">O dia e a hora</span></li>
-          <li><span data-fr="Votre prénom, et envoyer">O seu nome, e enviar</span></li>
-        </ol>
+        <h2 data-fr="Votre évaluation, en quatre <em>étapes</em>.">A sua avaliação, em quatro <em>passos</em>.</h2>
+        <p data-fr="Choisissez la ville, le soin, le jour et l’heure. La demande arrive complète sur le WhatsApp d’Isabel, qui vous confirme le rendez-vous.">Escolha a cidade, o tratamento, o dia e a hora. O pedido chega completo ao WhatsApp da Isabel, que confirma a marcação consigo.</p>
       </div>
       <form id="bookform" novalidate>
-        <div><p class="fs-t"><i>1</i><span data-fr="Où">Onde</span></p><div class="pros" id="pros" role="group" aria-label="Cidade"></div></div>
+        <div><p class="fs-t"><i>1</i><span data-fr="Ville">Cidade</span></p><div class="pros" id="pros" role="group" aria-label="Cidade"></div></div>
         <div>
           <p class="fs-t"><i>2</i><span data-fr="Soin">Tratamento</span></p>
           <label for="svc" data-fr="Choisissez le soin">Escolha o tratamento</label>
           <select id="svc"></select>
-          <div class="pick" id="pick"></div>
         </div>
         <div>
-          <p class="fs-t"><i>3</i><span data-fr="Jour et heure">Dia e hora</span></p>
-          <div class="days" id="days" role="group" aria-label="Dia"></div>
-          <p class="slot-g" data-fr="Heure souhaitée">Hora preferida</p><div class="chips" id="slots" role="group" aria-label="Hora"></div>
+          <p class="fs-t"><i>3</i><span data-fr="Jour et heure souhaités">Dia e hora preferidos</span></p>
+          <div class="cal" id="cal"></div>
+          <p class="slot-g" id="slotlabel" data-fr="Heure préférée">Hora preferida</p><div class="chips" id="slots" role="group" aria-label="Hora"></div>
         </div>
         <div>
-          <p class="fs-t"><i>4</i><span data-fr="Vos données">Os seus dados</span></p>
-          <label for="nm" data-fr="Votre prénom">O seu nome</label>
-          <input id="nm" type="text" autocomplete="given-name" placeholder="Ex.: Ana">
-          <label class="check" for="photo"><input id="photo" type="checkbox"> <span data-fr="J’enverrai une photo de la zone à traiter">Vou enviar uma foto da zona a tratar</span></label>
+          <p class="fs-t"><i>4</i><span data-fr="Vos coordonnées">Os seus dados</span></p>
+          <label for="nm" data-fr="Prénom (obligatoire)">Nome (obrigatório)</label>
+          <input id="nm" type="text" autocomplete="given-name" required aria-describedby="nmerr">
+          <p class="err" id="nmerr" hidden data-fr="Indiquez votre prénom pour qu’Isabel sache qui écrit.">Escreva o seu nome para a Isabel saber quem está a escrever.</p>
+          <label for="tel" style="margin-top:16px" data-fr="Téléphone (facultatif)">Telefone (opcional)</label>
+          <input id="tel" type="tel" autocomplete="tel" inputmode="tel">
         </div>
+        <p class="pref" data-fr="Le jour et l’heure sont une préférence. Le rendez-vous n’est confirmé que lorsqu’Isabel vous répond.">O dia e a hora são uma preferência. A marcação só fica confirmada quando a Isabel responder.</p>
         <div class="summary" aria-live="polite"><small id="sumtitle">Mensagem para a Isabel · 918 910 174</small><p id="msg"></p></div>
-        <a id="send" class="btn btn-wa" href="https://wa.me/351918910174" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg><span id="sendlabel">Enviar pedido à Isabel</span></a>
-        <p class="fallback"><span data-fr="C’est une demande : le rendez-vous est confirmé par l’Isabel. Vous préférez appeler ?">É um pedido: a hora fica marcada quando a Isabel confirmar. Prefere ligar?</span> <b>918 910 174</b></p>
+        <a id="send" class="btn btn-wa" href="https://wa.me/351918910174" target="_blank" rel="noopener"><span id="sendlabel">Enviar pedido à Isabel</span></a>
+        <p class="privacy" data-fr="Votre prénom, téléphone, soin et horaire servent uniquement à ce qu’Isabel réponde à votre demande. Ce site ne les enregistre pas : le message part de votre WhatsApp.">O seu nome, telefone, tratamento e hora servem só para a Isabel responder ao seu pedido. Este site não os guarda: a mensagem sai do seu WhatsApp.</p>
       </form>
     </div>
   </section>
 
-  <section class="prep gut">
+  <section id="duvidas" class="prep gut">
     <div class="in">
-      <div>
-        <p class="eyebrow" data-fr="Avant et après">Antes e depois da sessão</p>
-        <h2 class="split" style="font-size:clamp(38px,4.8vw,60px)" data-fr="Prendre soin <em>du résultat.</em>">Cuidar <em>do resultado.</em></h2>
-        <div class="rules">
-          <div><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/></svg><span data-fr="<b>Évitez le soleil</b> sur la zone traitée.">Evite a <b>exposição ao sol</b> na zona tratada.</span></div>
-          <div><svg class="ico" viewBox="0 0 24 24"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg><span data-fr="<b>Ne mouillez pas</b> la zone pendant les premières 24 heures.">Não molhe a zona nas <b>primeiras 24 horas</b>.</span></div>
-          <div><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-fr="Une <b>légère rougeur</b> est normale et disparaît en quelques heures.">Uma <b>leve vermelhidão</b> é normal e desaparece em poucas horas.</span></div>
-          <div><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg><span data-fr="<b>Respectez l’intervalle</b> entre les séances : c’est là que la peau élimine le pigment.">Respeite o <b>intervalo entre sessões</b>: é nele que a pele elimina o pigmento.</span></div>
-        </div>
-      </div>
       <div class="faq">
         <p class="eyebrow" data-fr="Questions fréquentes">Dúvidas frequentes</p>
-        <h2 class="split" style="font-size:clamp(38px,4.8vw,60px);margin-bottom:14px" data-fr="Ce que l’on <em>nous demande.</em>">O que nos <em>perguntam.</em></h2>
-        <details><summary data-fr="Combien de séances faut-il ?">Quantas sessões são precisas?</summary><p data-fr="Cela dépend du pigment, mais la plupart des sourcils demandent 2 à 5 séances pour un résultat complet.">Depende do pigmento, mas na maioria das sobrancelhas são precisas 2 a 5 sessões para um resultado completo.</p></details>
-        <details><summary data-fr="Est-ce douloureux ?">O procedimento dói?</summary><p data-fr="Non. Les techniques utilisées rendent le soin confortable et pratiquement indolore.">Não. As técnicas usadas tornam o tratamento confortável e praticamente indolor.</p></details>
-        <details><summary data-fr="La peau reste-t-elle marquée ?">A pele fica marcada ou irritada?</summary><p data-fr="Une légère rougeur juste après, qui disparaît en quelques heures. La récupération est rapide.">Uma leve vermelhidão logo a seguir, que desaparece em poucas horas. A recuperação é rápida.</p></details>
-        <details><summary data-fr="Retirer ou couvrir un tatouage ?">Remover ou cobrir uma tatuagem?</summary><p data-fr="Ça dépend. Parfois couvrir a du sens, parfois retirer est le meilleur chemin, souvent les deux. On en parle lors de l’évaluation.">Depende. Às vezes cobrir faz sentido, outras remover é o melhor caminho, muitas vezes as duas coisas. Falamos disso na avaliação.</p></details>
-        <details><summary data-fr="Combien ça coûte ?">Quanto custa?</summary><p data-fr="Le prix dépend du pigment, de la zone et du nombre de séances. Envoyez une photo sur WhatsApp pour une première estimation.">O preço depende do pigmento, da zona e do número de sessões. Envie uma foto pelo WhatsApp para uma primeira estimativa.</p></details>
+        <details><summary data-fr="Combien de séances faut-il ?">Quantas sessões são precisas?</summary><p data-fr="Cela dépend du pigment et de la zone. Pour les sourcils, Isabel indique en général 2 à 5 séances. Le nombre exact est défini lors de l’évaluation.">Depende do pigmento e da zona. Nas sobrancelhas, a Isabel indica em geral 2 a 5 sessões. O número certo é definido na avaliação.</p></details>
+        <details><summary data-fr="Est-ce que ça fait mal ?">O procedimento dói?</summary><p data-fr="On ressent un certain inconfort, qui varie d’une personne à l’autre. Isabel explique tout lors de l’évaluation.">Sente-se algum desconforto, que varia de pessoa para pessoa. A Isabel explica tudo na avaliação.</p></details>
+        <details><summary data-fr="Retirer ou couvrir un tatouage ?">Remover ou cobrir uma tatuagem?</summary><p data-fr="Cela dépend du tatouage et de ce que vous souhaitez. On en parle lors de l’évaluation.">Depende da tatuagem e do que pretende. Falamos disso na avaliação.</p></details>
+        <details><summary data-fr="Combien ça coûte ?">Quanto custa?</summary><p data-fr="Le prix dépend de la zone et du nombre de séances. Envoyez une photo sur WhatsApp pour une première idée.">O preço depende da zona e do número de sessões. Envie uma foto pelo WhatsApp para uma primeira ideia.</p></details>
+      </div>
+      <div>
+        <p class="eyebrow" data-fr="Après la séance">Depois da sessão</p>
+        <div class="rules">
+          <div><span class="dotn" aria-hidden="true">1</span><span data-fr="<b>Évitez le soleil</b> sur la zone traitée.">Evite o <b>sol</b> na zona tratada.</span></div>
+          <div><span class="dotn" aria-hidden="true">2</span><span data-fr="<b>Ne mouillez pas</b> la zone pendant les premières 24 heures.">Não molhe a zona nas <b>primeiras 24 horas</b>.</span></div>
+          <div><span class="dotn" aria-hidden="true">3</span><span data-fr="<b>Respectez l’intervalle</b> entre les séances indiqué par Isabel.">Respeite o <b>intervalo entre sessões</b> indicado pela Isabel.</span></div>
+          <div><span class="dotn" aria-hidden="true">4</span><span data-fr="Un doute ? <b>Envoyez une photo</b> sur WhatsApp.">Alguma dúvida? <b>Envie uma foto</b> pelo WhatsApp.</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="visitar" class="visit-wrap gut">
+  <section id="contactos" class="visit-wrap gut">
     <div class="in">
-      <div class="head-row"><div><p class="eyebrow" data-fr="Où nous trouver">Onde estamos</p><h2 class="split" data-fr="Trois villes, <em>une méthode.</em>">Três cidades, <em>um método.</em></h2></div></div>
-      <div class="visit">
-        <div class="hours">
-          <p style="margin:0 0 6px;font-family:var(--serif);font-size:26px">Torres Vedras</p>
+      <div class="head-row"><div><p class="eyebrow" data-fr="Où nous trouver">Onde estamos</p><h2 data-fr="Trois villes, une <em>méthode</em>.">Três cidades, um <em>método</em>.</h2></div></div>
+      <div class="cities3">
+        <div class="cityc">
+          <h3>Torres Vedras</h3>
+          <p data-fr="Shopping Banix, Av. 5 de Outubro 21, 1er étage, boutique 102">Shopping Banix, Av. 5 de Outubro 21, 1.º andar, loja 102</p>
           <div id="status" class="status"><i></i><span></span></div>
-          <table aria-label="Horário semanal"><tbody id="hrs"></tbody></table>
-          <div class="cities">
-            <p><b>Cascais</b> <span data-fr="Sur rendez-vous · adresse confirmée lors de la réservation">Por marcação · morada confirmada ao marcar</span></p>
-            <p><b data-fr="Genève">Genebra</b> <span data-fr="Sur rendez-vous · dates confirmées sur WhatsApp">Por marcação · datas confirmadas pelo WhatsApp</span></p>
-          </div>
+          <table aria-label="Horário"><tbody id="hrs"></tbody></table>
+          <a class="btn btn-fill" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener" data-fr="Itinéraire · Google Maps">Como chegar · Google Maps</a>
         </div>
-        <div class="place">
-          <img src="img/g/f05.jpg" alt="" loading="lazy">
-          <div class="tx">
-            <h3>Shopping Banix, loja 102</h3>
-            <p data-fr="Av. 5 de Outubro 21, 1er étage · Torres Vedras">Av. 5 de Outubro 21, 1.º andar · Torres Vedras</p>
-            <div class="row"><a class="btn btn-champ" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener" data-fr="Itinéraire · Google Maps">Como chegar · Google Maps</a></div>
-          </div>
+        <div class="cityc">
+          <h3>Cascais</h3>
+          <p data-fr="Sur rendez-vous. L’adresse est confirmée lors de la réservation.">Por marcação. A morada é confirmada ao marcar.</p>
+        </div>
+        <div class="cityc">
+          <h3 data-fr="Genève">Genebra</h3>
+          <p data-fr="Sur rendez-vous. Les dates sont confirmées sur WhatsApp.">Por marcação. As datas são confirmadas pelo WhatsApp.</p>
         </div>
       </div>
       <div class="socials" id="socials"></div>
-    </div>
-  </section>
-
-  <section id="proposta" class="prop gut">
-    <div class="in">
-      <span class="prop-tag">Proposta para a Reviv · Isabel Miranda</span>
-      <h2 style="margin-top:22px;max-width:16ch">Um site à altura <em>dos seus resultados.</em></h2>
-      <div class="found">
-        <b>O que encontrei ao procurar a Reviv online</b>
-        <p>A página principal do seu site, isabelmirandalaser.com, dá erro 404 (“Página não encontrada”). Só as páginas de anúncio da despigmentação funcionam.</p>
-        <p>Os seus serviços estão espalhados: 4 no catálogo do WhatsApp (sem descrição nem preço), outros na montra e nos destaques do Instagram. Quem a procura não vê tudo num só sítio, nem as 15 avaliações de 5 estrelas, nem os seus antes e depois.</p>
-        <p>No Google, a morada de Torres Vedras aparece com o código postal 2750-762 Cascais. Vale a pena corrigir para quem procura no mapa.</p>
-      </div>
-      <div class="ba">
-        <div><h3>Hoje</h3><ul>
-          <li>Site principal em erro e serviços espalhados por várias apps</li>
-          <li>Clientes de Genebra sem uma página em francês completa</li>
-          <li>Os antes e depois e as avaliações ficam escondidos</li></ul></div>
-        <div class="on"><h3>Com o site</h3><ul>
-          <li>Todos os tratamentos explicados num só endereço, em português e francês</li>
-          <li>A cliente escolhe a cidade, o tratamento e a hora, e o pedido chega completo</li>
-          <li>Comparador de antes e depois e 5 estrelas a convencer antes da avaliação</li></ul></div>
-      </div>
-      <div class="prop-grid">
-        <div>
-          <div class="owner-msg">
-            <b>Experimente: faça um pedido em “Marcar”</b>
-            <p style="margin:4px 0 0;font-size:15px;color:var(--ink-soft)">É assim que chega ao seu WhatsApp.</p>
-            <div class="chat"><div class="chat-h"><span id="chatwho">Nova cliente</span><span>WhatsApp</span></div>
-            <div class="chat-b"><div class="bubble" id="ownermsg"></div><small>agora ✓✓</small></div></div>
-          </div>
-          <div class="gains">
-            <div class="gain"><h4>Antes e depois interativo</h4><p>A prova que convence quem tem medo de arriscar.</p></div>
-            <div class="gain"><h4>Português e francês</h4><p>Para as clientes de Torres Vedras, Cascais e Genebra.</p></div>
-            <div class="gain"><h4>Marcação por cidade</h4><p>Cada pedido diz onde, o quê e quando.</p></div>
-            <div class="gain"><h4>Um endereço que funciona</h4><p>Substitui a página em erro e o beacons.</p></div>
-            <div class="gain"><h4>Encontram-na no Google</h4><p>Preparado para "despigmentação de sobrancelhas" e "remoção de tatuagens".</p></div>
-            <div class="gain"><h4>Menos perguntas repetidas</h4><p>Sessões, dor, cuidados e preços já explicados.</p></div>
-          </div>
-        </div>
-        <aside class="offer" aria-label="O que inclui">
-          <h3>O seu site, <em>pronto a receber clientes.</em></h3>
-          <ul>
-            <li>Site à medida, com a identidade da Reviv</li>
-            <li>Português e francês</li>
-            <li>Comparador de antes e depois e galeria de resultados</li>
-            <li>Todos os tratamentos, com o que inclui e quantas sessões</li>
-            <li>Marcação pelo WhatsApp, por cidade</li>
-            <li>Endereço próprio, alojamento e QR para a montra</li>
-          </ul>
-          <div class="opt"><b style="color:var(--ivory);font-weight:400">Depois de estar online:</b> atualizo resultados, tratamentos e preços sempre que precisar.</div>
-          <p style="margin:0;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--champagne-lt)">Falamos e ajusto tudo ao que imagina.</p>
-        </aside>
-      </div>
-      <div class="timeline">
-        <div><b>Aprova</b><span>Diz-me o que mudar: textos, fotos, tratamentos, preços.</span></div>
-        <div><b>Preparo</b><span>Ajusto tudo e ligo o endereço do site.</span></div>
-        <div><b>Fica online</b><span>Mostro-lhe como atualizar resultados e horários.</span></div>
-      </div>
     </div>
   </section>
 </main>
 
 <footer class="gut">
   <div class="in foot">
-    <div><span class="mono">Reviv</span><p style="margin-top:14px">Estética Integrada · Isabel Miranda<br>Shopping Banix, Av. 5 de Outubro 21, 1.º andar, loja 102<br>Torres Vedras · Cascais · Genebra<br><span data-fr="Du lundi au vendredi, 9h à 17h (Torres Vedras)">Segunda a sexta, 9:00 às 17:00 (Torres Vedras)</span></p></div>
-    <div><b>WhatsApp</b><p><a href="https://wa.me/351918910174" target="_blank" rel="noopener">Isabel · 918 910 174</a><br><a href="tel:+351918910174" data-fr="Appeler">Ligar</a></p></div>
-    <div><b data-fr="Réseaux et plan">Redes e mapa</b><p><a href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">Instagram</a><br><a href="https://www.facebook.com/revivesteticaintegrada/" target="_blank" rel="noopener">Facebook</a><br><a href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener">Google Maps</a></p></div>
+    <div><span class="mono">Reviv</span><p style="margin-top:14px">Estética Integrada · Isabel Miranda<br>Torres Vedras · Cascais · <span data-fr="Genève">Genebra</span></p></div>
+    <div><p class="fh">WhatsApp</p><p><a href="https://wa.me/351918910174" target="_blank" rel="noopener">918 910 174</a><br><a href="tel:+351918910174" data-fr="Appeler">Ligar</a></p></div>
+    <div><p class="fh" data-fr="Réseaux">Redes</p><p><a href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">Instagram</a><br><a href="https://www.facebook.com/revivesteticaintegrada/" target="_blank" rel="noopener">Facebook</a><br><a href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener">Google Maps</a></p></div>
   </div>
-  <div class="in credit">Proposta de site preparada por Valeria. Fotos, textos e avaliações dos perfis públicos da Reviv no Google, Instagram, Facebook e WhatsApp.</div>
+  <p class="in credit" data-fr="Site de démonstration préparé par Valeria pour Reviv. Photos des soins à titre d’illustration (Unsplash) ; résultats et publications : Reviv.">Site de demonstração preparado por Valeria para a Reviv. Fotografias dos tratamentos meramente ilustrativas (Unsplash); resultados e publicações: Reviv.</p>
 </footer>
 
 <nav class="bar" aria-label="Contacto rápido">
@@ -973,232 +1095,311 @@ footer{background:var(--choc-2);color:rgba(247,241,234,.78);padding-block:70px 1
   var IG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
   var FB='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M15.5 8H14a2 2 0 0 0-2 2v11M9.5 13h5"/></svg>';
   var PIN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
-  var LOOP='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>';
   var WA='351918910174',NUM='918 910 174';
 
   // language: Portuguese by default, French for the Geneva clients (remembered per visitor)
   var lang='pt';
   try{lang=localStorage.getItem('reviv-lang')||((navigator.language||'').slice(0,2)==='fr'?'fr':'pt')}catch(e){}
   function T(pt,fr){return lang==='fr'&&fr?fr:pt}
+  function L(a){return a?T(a[0],a[1]):''}
 
-  // cities where Isabel works; the booking request says which one
-  var CITIES={
-    tv:{name:'Torres Vedras',mono:'TV',sub:['Shopping Banix · seg a sex','Shopping Banix · lun–ven']},
-    cs:{name:'Cascais',mono:'Cs',sub:['Por marcação','Sur rendez-vous']},
-    ge:{name:'Genebra',fr:'Genève',mono:'Ge',sub:['Por marcação','Sur rendez-vous']}
-  };
-
-  // services from the WhatsApp catalog, the shop window and the Instagram highlights; prices are set after the evaluation
-  // item: {n,nf name; s,sf sessions; d,df description; i,if includes; ph photo}
-  var CATS=[
-    {id:'laser',t:['Laser','Laser'],em:['e remoção','et détatouage'],img:'img/g/f07.jpg',
-     intro:['A especialidade da Isabel: retirar o pigmento indesejado com laser de última geração, protegendo a pele e o pelo natural.','La spécialité d’Isabel : retirer le pigment indésirable avec un laser de dernière génération, en protégeant la peau et le poil naturel.'],
-     note:['Mais sessões não significam mais evolução. O intervalo entre sessões faz parte do tratamento.','Plus de séances ne veut pas dire plus de résultat. L’intervalle entre les séances fait partie du soin.'],items:[
-      {n:'Despigmentação de sobrancelhas',nf:'Dépigmentation des sourcils',s:'2–5 sessões',sf:'2–5 séances',d:'Remove a micropigmentação antiga, escura ou fora do sítio, sem afetar os pelos naturais. Praticamente indolor.',df:'Retire une ancienne micropigmentation, foncée ou mal placée, sans toucher aux poils naturels. Pratiquement indolore.',i:['Avaliação do pigmento','Plano de sessões','Cuidados depois de cada sessão'],if:['Évaluation du pigment','Plan de séances','Soins après chaque séance'],ph:'img/cat/despigmentacao-ph.jpg'},
-      {n:'Remoção de micropigmentação',nf:'Retrait de micropigmentation',d:'Para uma micropigmentação antiga que já não a representa. Avaliamos se é melhor remover, corrigir ou esperar.',df:'Pour une ancienne micropigmentation qui ne vous ressemble plus. On évalue s’il vaut mieux retirer, corriger ou attendre.'},
-      {n:'Remoção de tatuagens',nf:'Détatouage',d:'A tatuagem clareia sessão a sessão, para a retirar por completo ou preparar uma nova por cima.',df:'Le tatouage s’éclaircit séance après séance, pour le retirer complètement ou préparer un recouvrement.',ph:'img/cat/tatuagens-ph.jpg'},
-      {n:'Depilação a laser',nf:'Épilation au laser',d:'Redução progressiva dos pelos, sessão a sessão.',df:'Réduction progressive des poils, séance après séance.'}]},
-    {id:'sobrancelhas',t:['Sobrancelhas','Sourcils'],em:['e micropigmentação','et micropigmentation'],img:'img/g/f08.jpg',
-     intro:['Depois de remover, regenerar. E quando faz sentido, um desenho novo e natural.','Après le retrait, régénérer. Et quand c’est le bon moment, un nouveau dessin naturel.'],items:[
-      {n:'Regeneração de sobrancelhas com exossomos (ASCE)',nf:'Régénération des sourcils aux exosomes (ASCE)',d:'Protocolo Brow Repair com exossomos ASCE, para devolver força e densidade aos pelos.',df:'Protocole Brow Repair aux exosomes ASCE, pour redonner force et densité aux poils.',ph:'img/cat/regeneracao-ph.jpg'},
-      {n:'Micropigmentação de sobrancelhas',nf:'Micropigmentation des sourcils',d:'Desenho e cor pensados para o seu rosto.',df:'Dessin et couleur pensés pour votre visage.'},
-      {n:'Micropigmentação labial',nf:'Micropigmentation des lèvres',d:'Cor e contorno dos lábios, com efeito natural.',df:'Couleur et contour des lèvres, avec un effet naturel.'},
-      {n:'Micropigmentação capilar',nf:'Micropigmentation capillaire',d:'Efeito de densidade no couro cabeludo, para disfarçar zonas com menos cabelo.',df:'Effet de densité sur le cuir chevelu, pour camoufler les zones moins fournies.'}]},
-    {id:'pele',t:['Pele','Peau'],em:['e rosto','et visage'],img:'img/g/f03.jpg',
-     intro:['Começa com a análise 3D da pele. Depois, os tratamentos com luz e laser que a sua pele precisa.','Tout commence par l’analyse 3D de la peau. Ensuite, les soins à la lumière et au laser dont votre peau a besoin.'],items:[
-      {n:'Análise avançada da pele 3D',nf:'Analyse avancée de la peau en 3D',d:'O ponto de partida: perceber a pele para escolher o tratamento certo.',df:'Le point de départ : comprendre la peau pour choisir le bon soin.'},
-      {n:'Peeling Hollywood',nf:'Peeling Hollywood',d:'Peeling de carbono com laser, para uma pele mais uniforme e luminosa.',df:'Peeling au carbone et au laser, pour une peau plus uniforme et lumineuse.',ph:'img/g/f03.jpg'},
-      {n:'Limpeza de pele',nf:'Nettoyage de peau',d:'Pele limpa, fresca e cuidada.',df:'Une peau propre, fraîche et soignée.'},
-      {n:'Ledterapia',nf:'Thérapie LED',d:'Luz LED para acalmar e dar vitalidade à pele.',df:'La lumière LED pour apaiser la peau et lui redonner de l’éclat.'},
-      {n:'Fotobiomodulação',nf:'Photobiomodulation',d:'Luz de baixa intensidade que estimula a regeneração da pele.',df:'Une lumière de faible intensité qui stimule la régénération de la peau.'}]},
-    {id:'perfuracoes',t:['Perfurações','Piercings'],em:['e tatuagens','et tatouages'],img:'img/g/f05.jpg',
-     intro:['Também na Reviv, com o mesmo cuidado com a pele.','Aussi chez Reviv, avec le même soin de la peau.'],items:[
-      {n:'Perfurações de orelhas',nf:'Perçage des oreilles',d:'Furo das orelhas, com os cuidados explicados para casa.',df:'Perçage des oreilles, avec les soins à faire à la maison expliqués.',ph:'img/cat/perfuracoes-ph.jpg'},
-      {n:'Tatuagens',nf:'Tatouages',d:'Fale com a Isabel sobre a sua ideia.',df:'Parlez de votre idée avec Isabel.'}]}
+  // every photo on the page, used once each. To change a photo, change it here (new ones go in img/novas/).
+  // onde: hero | comparador | resultados | metodo | espaco | tratamento:<id>
+  var FOTOS=[
+    {src:'img/g/f07.jpg',w:1200,h:1600,onde:'hero',foco:'50% 74%',alt:['A Isabel a aplicar laser junto aos olhos de uma cliente','Isabel applique le laser près des yeux d’une cliente']},
+    {src:'img/g/f02.jpg',w:900,h:1600,onde:'hero',foco:'50% 55%',alt:['Braço depois da remoção de tatuagem, com a foto do antes no telemóvel','Bras après le détatouage, avec la photo d’avant sur le téléphone']},
+    {src:'img/g/antes-sobrancelha.jpg',w:1600,h:800,onde:'comparador',caso:'sobrancelhas',tipo:'antes',alt:['Antes: sobrancelha com micropigmentação escura','Avant : sourcil avec une micropigmentation foncée']},
+    {src:'img/g/depois-sobrancelha.jpg',w:1600,h:800,onde:'comparador',caso:'sobrancelhas',tipo:'depois',alt:['Depois: sobrancelha sem pigmento, com os pelos naturais','Après : sourcil sans pigment, avec les poils naturels']},
+    {src:'img/ig/DeohrdpDg7Y.jpg',w:1080,h:1350,onde:'resultados',code:'DeohrdpDg7Y',alt:['Antes e depois: sobrancelha com pigmento azulado e depois da despigmentação','Avant et après : sourcil au pigment bleuté puis après la dépigmentation'],leg:['Pigmento azulado, removido','Pigment bleuté, retiré']},
+    {src:'img/ig/DdbTvVdAAeB.jpg',w:1080,h:1350,onde:'resultados',code:'DdbTvVdAAeB',alt:['Antes e depois: sobrancelha com pigmento cinzento e depois da sessão de laser','Avant et après : sourcil au pigment gris puis après la séance de laser'],leg:['Pigmento cinzento, removido','Pigment gris, retiré']},
+    {src:'img/g/f04w.jpg',w:1034,h:514,onde:'resultados',wide:1,alt:['Quatro sobrancelhas antes e depois da despigmentação','Quatre sourcils avant et après la dépigmentation'],leg:['Despigmentação de sobrancelhas: quatro casos','Dépigmentation des sourcils : quatre cas']},
+    {src:'img/g/f03.jpg',w:576,h:1024,onde:'metodo',foco:'50% 40%',alt:['Peeling de carbono no rosto de uma cliente','Peeling au carbone sur le visage d’une cliente'],leg:['Peeling Hollywood','Peeling Hollywood']},
+    {src:'img/g/f05.jpg',w:1200,h:1600,onde:'espaco',alt:['Montra da Reviv no Shopping Banix','La vitrine de Reviv au Shopping Banix'],leg:['A montra','La vitrine'],sub:['1.º andar, loja 102','1er étage, boutique 102']},
+    {src:'img/g/f01.jpg',w:1200,h:1600,onde:'espaco',alt:['Corredor de acesso à Reviv','Le couloir d’accès à Reviv'],leg:['O acesso','L’accès'],sub:['Calmo e discreto, dentro do centro','Calme et discret, à l’intérieur du centre']},
+    {src:'img/g/f09.jpg',w:900,h:1600,onde:'espaco',foco:'50% 30%',alt:['Porta da Reviv com a lista de tratamentos','La porte de Reviv avec la liste des soins'],leg:['À porta','À la porte'],sub:['Todos os tratamentos','Tous les soins']},
+    // illustrative service photos, Unsplash licence (free for commercial use); replace with Isabel's own when she sends them
+    {src:'img/servicos/despigmentacao.jpg',w:1400,h:1237,onde:'tratamento:laser:0',alt:['Mãos com luvas a trabalhar junto a uma sobrancelha','Mains gantées travaillant près d’un sourcil']},
+    {src:'img/servicos/remocao-micro.jpg',w:1400,h:934,onde:'tratamento:laser:1',foco:'50% 40%',alt:['Rosto em grande plano, olho e sobrancelha','Visage en gros plan, œil et sourcil']},
+    {src:'img/servicos/remocao-tatuagem.jpg',w:1050,h:1400,onde:'tratamento:laser:2',foco:'50% 45%',alt:['Braço com uma pequena tatuagem','Bras avec un petit tatouage']},
+    {src:'img/servicos/depilacao.jpg',w:1120,h:1400,onde:'tratamento:laser:3',foco:'50% 55%',alt:['Depilação a laser nas pernas','Épilation au laser des jambes']},
+    {src:'img/servicos/exossomos.jpg',w:1120,h:1400,onde:'tratamento:sobrancelhas:0',foco:'50% 40%',alt:['Conta-gotas com sérum dourado','Compte-gouttes avec un sérum doré']},
+    {src:'img/servicos/micro-sobrancelhas.jpg',w:1050,h:1400,onde:'tratamento:sobrancelhas:1',foco:'50% 35%',alt:['Sobrancelha desenhada e natural','Sourcil dessiné et naturel']},
+    {src:'img/servicos/micro-labial.jpg',w:1120,h:1400,onde:'tratamento:sobrancelhas:2',foco:'50% 55%',alt:['Lábios em grande plano com cor natural','Lèvres en gros plan, couleur naturelle']},
+    {src:'img/servicos/micro-capilar.jpg',w:1400,h:934,onde:'tratamento:sobrancelhas:3',alt:['Couro cabeludo em grande plano','Cuir chevelu en gros plan']},
+    {src:'img/servicos/analise-pele.jpg',w:1400,h:934,onde:'tratamento:pele:0',alt:['Tratamento de rosto com aparelho','Soin du visage avec un appareil']},
+    {src:'img/servicos/peeling.jpg',w:1050,h:1400,onde:'tratamento:pele:1',foco:'50% 40%',alt:['Tratamento a laser no rosto, com óculos de proteção','Soin laser du visage, avec lunettes de protection']},
+    {src:'img/servicos/limpeza.jpg',w:933,h:1400,onde:'tratamento:pele:2',foco:'50% 60%',alt:['Limpeza de pele com máscara','Nettoyage de peau avec masque']},
+    {src:'img/servicos/led.jpg',w:1120,h:1400,onde:'tratamento:pele:3',foco:'50% 40%',alt:['Máscara de luz LED no rosto','Masque à lumière LED sur le visage']},
+    {src:'img/servicos/fotobio.jpg',w:1400,h:934,onde:'tratamento:pele:4',alt:['Sala com luz vermelha de baixa intensidade','Salle à lumière rouge de faible intensité']},
+    {src:'img/servicos/perfuracoes.jpg',w:933,h:1400,onde:'tratamento:perfuracoes:0',foco:'50% 45%',alt:['Orelha em grande plano','Oreille en gros plan']},
+    {src:'img/servicos/tatuagens.jpg',w:1400,h:934,onde:'tratamento:perfuracoes:1',alt:['Tatuador a trabalhar num braço','Tatoueur travaillant sur un bras']},
+    // Isabel's own Instagram posts (1080 px)
+    {src:'img/ig/DdWJQufoG4J.jpg',w:1080,h:1350,onde:'instagram',code:'DdWJQufoG4J',alt:['Publicação: se a sua sobrancelha pudesse falar, ela pediria um recomeço?','Publication : si votre sourcil pouvait parler, demanderait-il un nouveau départ ?']},
+    {src:'img/ig/Dey72HvoK1E.jpg',w:1080,h:1350,onde:'instagram',code:'Dey72HvoK1E',alt:['Publicação: antes de tratar, é preciso entender; a avaliação vem primeiro','Publication : avant de traiter, il faut comprendre ; l’évaluation d’abord']},
+    {src:'img/ig/De3-gbkEfm_.jpg',w:1080,h:1350,onde:'instagram',code:'De3-gbkEfm_',alt:['Publicação: 5 coisas que eu jamais faria numa sobrancelha com pigmento antigo','Publication : 5 choses que je ne ferais jamais sur un sourcil avec un ancien pigment']},
+    {src:'img/ig/DeRZ_OZDkdb.jpg',w:1080,h:1350,onde:'instagram',code:'DeRZ_OZDkdb',alt:['Publicação: cobrir ou remover uma tatuagem?','Publication : couvrir ou retirer un tatouage ?']},
+    {src:'img/ig/Del85kxjZ9j.jpg',w:1080,h:1350,onde:'instagram',code:'Del85kxjZ9j',alt:['Publicação: a sua sobrancelha está a mudar de cor?','Publication : votre sourcil change de couleur ?']},
+    {src:'img/ig/DdoYL4JHDeU.jpg',w:1080,h:1350,onde:'instagram',code:'DdoYL4JHDeU',alt:['Publicação: red flags de uma micropigmentação antiga','Publication : les signaux d’alerte d’une ancienne micropigmentation']},
+    {src:'img/ig/De9O8TznBvY.jpg',w:1080,h:1350,onde:'mensagens',code:'De9O8TznBvY',alt:['Mensagem de uma cliente a agradecer a despigmentação das sobrancelhas','Message d’une cliente remerciant pour la dépigmentation des sourcils']},
+    {src:'img/ig/DdtUYwhnB2d.jpg',w:1080,h:1350,onde:'mensagens',code:'DdtUYwhnB2d',alt:['Mensagem de uma cliente sobre a remoção do pigmento','Message d’une cliente sur le retrait du pigment']},
+    {src:'img/ig/DegzThMjnPv.jpg',w:1080,h:1350,onde:'mensagens',code:'DegzThMjnPv',alt:['Mensagem de uma cliente a agradecer o atendimento','Message d’une cliente remerciant pour l’accueil']}
   ];
-  function nm(it){return T(it.n,it.nf)}
+  function fotos(onde){return FOTOS.filter(function(f){return f.onde===onde})}
+  function img(f,lazy,sizes){var i=el('img');i.src=f.src;var mw=Math.round(700*f.w/Math.max(f.w,f.h));i.srcset=f.src.replace(/\.jpg$/,'-m.jpg')+' '+mw+'w, '+f.src+' '+f.w+'w';i.sizes=sizes||'(max-width:760px) 100vw, 50vw';i.alt=L(f.alt);i.width=f.w;i.height=f.h;if(f.foco)i.style.objectPosition=f.foco;if(lazy){i.loading='lazy';i.decoding='async'}f._img=i;return i}
 
-  // catalog: one category at a time
-  var current=CATS[0].id;
-  function buildTabs(){$('catnav').innerHTML='';CATS.forEach(function(c){var b=el('button');b.type='button';b.setAttribute('role','tab');b.dataset.id=c.id;b.textContent=T(c.t[0],c.t[1])+' '+T(c.em[0],c.em[1]);b.appendChild(el('small',null,String(c.items.length)));b.addEventListener('click',function(){showCat(c.id,true)});$('catnav').appendChild(b)})}
-  function book(c,i){return function(){selectSvc(c.id,i);$('marcar').scrollIntoView({behavior:'smooth'})}}
-  function showCat(id,scroll){
-    current=id;var c=CATS.find(function(x){return x.id===id});
-    Array.prototype.forEach.call($('catnav').children,function(b){b.setAttribute('aria-selected',b.dataset.id===id?'true':'false')});
-    var sel=$('catnav').querySelector('[aria-selected="true"]');if(sel&&sel.parentNode.scrollTo)sel.parentNode.scrollTo({left:sel.offsetLeft-20,behavior:'smooth'});
-    var panel=el('div','panel swap');
-    var as=el('aside','aside');var ph=el('div','ph');var im=el('img');im.src=c.img;im.alt=T(c.t[0],c.t[1]);ph.appendChild(im);ph.appendChild(el('span','tag',c.items.length+' '+T('tratamentos','soins')));as.appendChild(ph);
-    var h=el('h3');h.textContent=T(c.t[0],c.t[1])+' ';h.appendChild(el('em',null,T(c.em[0],c.em[1])));as.appendChild(h);
-    var who=el('div','who');who.appendChild(document.createTextNode(T('Com a Isabel','Avec Isabel')));var wa=el('a','link','WhatsApp '+NUM);wa.href='https://wa.me/'+WA;wa.target='_blank';wa.rel='noopener';who.appendChild(wa);as.appendChild(who);
-    as.appendChild(el('p',null,T(c.intro[0],c.intro[1])));
-    var g=el('div','good');g.appendChild(el('b',null,T('Bom saber','Bon à savoir')));g.appendChild(document.createTextNode(c.note?T(c.note[0],c.note[1]):T('O preço depende da zona e do número de sessões. Envie uma foto pelo WhatsApp e a Isabel diz-lhe por onde começar.','Le prix dépend de la zone et du nombre de séances. Envoyez une photo sur WhatsApp et Isabel vous dit par où commencer.')));as.appendChild(g);
-    panel.appendChild(as);
-    var list=el('div','list');
-    c.items.forEach(function(it,i){
-      var a=el('article','it'+(it.ph?' feat':''));
-      if(it.ph){var fi=el('img');fi.src=it.ph;fi.alt=nm(it);fi.loading='lazy';a.appendChild(fi)}
-      var box=el('div');var row=el('div','row');row.appendChild(el('h4',null,nm(it)));box.appendChild(row);
-      var m=el('div','m');if(it.s){var sp=el('span');sp.innerHTML=LOOP;sp.appendChild(document.createTextNode(T(it.s,it.sf)));m.appendChild(sp)}m.appendChild(el('span','ask',T('Preço sob avaliação','Prix sur évaluation')));box.appendChild(m);
-      if(it.d)box.appendChild(el('p','d',T(it.d,it.df)));
-      if(it.i){var inc=el('p','inc');inc.appendChild(el('b',null,T('Inclui: ','Comprend : ')));inc.appendChild(document.createTextNode((lang==='fr'?it.if:it.i).join(' · ')));box.appendChild(inc)}
-      var go=el('div','go');var bt=el('button',null,T('Marcar avaliação →','Réserver une évaluation →'));bt.type='button';bt.setAttribute('aria-label',T('Marcar ','Réserver ')+nm(it));bt.addEventListener('click',book(c,i));go.appendChild(bt);box.appendChild(go);
-      a.appendChild(box);list.appendChild(a);
-    });
-    panel.appendChild(list);
-    $('cats').innerHTML='';$('cats').appendChild(panel);
-    if(scroll){var y=$('catnav').getBoundingClientRect().top+window.scrollY-80;if(Math.abs(window.scrollY-y)>200)window.scrollTo({top:y,behavior:'smooth'})}
+  // hero: slow crossfade, one figure per hero photo
+  fotos('hero').forEach(function(f,i){var fig=el('figure');if(i===0)fig.className='on';var hi=img(f,i>0,'100vw');if(i===0)hi.setAttribute('fetchpriority','high');fig.appendChild(hi);$('slides').appendChild(fig)});
+  var heroFigs=$('slides').children,heroI=0;
+  if(heroFigs.length>1)setInterval(function(){heroFigs[heroI].className='';heroI=(heroI+1)%heroFigs.length;heroFigs[heroI].className='on'},14000);
+
+  // results: comparator cases come from FOTOS (onde 'comparador', same caso, tipo antes/depois)
+  var CASOS={sobrancelhas:['Sobrancelhas','Sourcils'],tatuagem:['Tatuagem','Tatouage'],depilacao:['Depilação','Épilation'],peeling:['Peeling','Peeling']};
+  var CASOTXT={sobrancelhas:['Micropigmentação antiga, escura e fria, removida a laser. Neste caso, os pelos naturais mantiveram-se.','Ancienne micropigmentation, foncée et froide, retirée au laser. Dans ce cas, les poils naturels sont restés.']};
+  var casos=[];fotos('comparador').forEach(function(f){if(casos.indexOf(f.caso)<0)casos.push(f.caso)});
+  var caso=casos[0];
+  function showCase(c){
+    caso=c;var a=FOTOS.find(function(f){return f.caso===c&&f.tipo==='antes'}),d=FOTOS.find(function(f){return f.caso===c&&f.tipo==='depois'});
+    [['cmpbefore',a],['cmpafter',d]].forEach(function(p){var e=$(p[0]),f=p[1];e.srcset=f.src.replace(/\.jpg$/,'-m.jpg')+' 700w, '+f.src+' '+f.w+'w';e.sizes='(max-width:1240px) 100vw, 1200px';e.src=f.src;e.alt=L(f.alt)});
+    $('casetext').textContent=L(CASOTXT[c]);
+    Array.prototype.forEach.call($('cases').children,function(b){b.setAttribute('aria-pressed',b.dataset.c===c?'true':'false')});
+  }
+  function buildCases(){$('cases').innerHTML='';$('cases').hidden=casos.length<2;casos.forEach(function(c){var b=el('button','tab',L(CASOS[c]));b.type='button';b.dataset.c=c;b.addEventListener('click',function(){showCase(c)});$('cases').appendChild(b)});showCase(caso)}
+  function buildResMore(){$('resmore').innerHTML='';fotos('resultados').forEach(function(f){var fig=el('figure','rv in'+(f.wide?' wide':''));fig.appendChild(f._img&&f._img.parentNode?f._img:img(f,true));if(f.leg)fig.appendChild(el('figcaption',null,L(f.leg)));$('resmore').appendChild(fig)})}
+  var cmp=$('cmp'),rng=$('cmprange');
+  rng.addEventListener('input',function(){cmp.style.setProperty('--pos',rng.value+'%')});
+
+  // services from the WhatsApp catalog, the shop window and the Instagram highlights; no prices until Isabel sends them
+  // item: n name, s sessions, d description, i includes (all [pt,fr])
+  var CATS=[
+    {id:'laser',t:['Laser e remoção','Laser et détatouage'],items:[
+      {n:['Despigmentação de sobrancelhas','Dépigmentation des sourcils'],s:['2–5 sessões, segundo a Isabel','2–5 séances, selon Isabel'],d:['Remoção a laser de uma micropigmentação antiga, escura ou fora do sítio, procurando preservar os pelos naturais.','Retrait au laser d’une ancienne micropigmentation, foncée ou mal placée, en cherchant à préserver les poils naturels.'],i:[['Micropigmentação escura ou com tons indesejados','Desenho antigo que já não favorece','Pigmento desbotado, avermelhado, azulado ou acinzentado'],['Micropigmentation foncée ou aux tons indésirables','Ancien dessin qui ne vous met plus en valeur','Pigment délavé, rougeâtre, bleuté ou grisâtre']],cu:['Evitar o sol e não molhar a zona nas primeiras 24 horas.','Éviter le soleil et ne pas mouiller la zone pendant les premières 24 heures.'],dest:1},
+      {n:['Remoção de micropigmentação','Retrait de micropigmentation'],dest:1,d:['Para uma micropigmentação que já não a representa. Na avaliação decide-se se é melhor remover, corrigir ou esperar.','Pour une micropigmentation qui ne vous ressemble plus. L’évaluation permet de décider s’il vaut mieux retirer, corriger ou attendre.']},
+      {n:['Remoção de tatuagens','Détatouage'],dest:1,d:['Clareamento da tatuagem a laser, sessão a sessão, para a retirar ou preparar uma nova por cima.','Éclaircissement du tatouage au laser, séance après séance, pour le retirer ou préparer un recouvrement.']},
+      {n:['Depilação a laser','Épilation au laser'],d:['Depilação com laser, em sessões.','Épilation au laser, en plusieurs séances.']}]},
+    {id:'sobrancelhas',t:['Sobrancelhas e micropigmentação','Sourcils et micropigmentation'],items:[
+      {n:['Regeneração de sobrancelhas com exossomos (ASCE)','Régénération des sourcils aux exosomes (ASCE)'],dest:1,d:['Protocolo Brow Repair com exossomos ASCE, para o cuidado dos pelos da sobrancelha.','Protocole Brow Repair aux exosomes ASCE, pour le soin des poils du sourcil.']},
+      {n:['Micropigmentação de sobrancelhas','Micropigmentation des sourcils'],d:['Desenho e cor pensados para o seu rosto.','Dessin et couleur pensés pour votre visage.']},
+      {n:['Micropigmentação labial','Micropigmentation des lèvres'],d:['Cor e contorno dos lábios.','Couleur et contour des lèvres.']},
+      {n:['Micropigmentação capilar','Micropigmentation capillaire'],d:['Efeito de densidade no couro cabeludo.','Effet de densité sur le cuir chevelu.']}]},
+    {id:'pele',t:['Pele e rosto','Peau et visage'],items:[
+      {n:['Análise avançada da pele 3D','Analyse avancée de la peau en 3D'],d:['O ponto de partida para escolher o tratamento.','Le point de départ pour choisir le soin.']},
+      {n:['Peeling Hollywood','Peeling Hollywood'],d:['Peeling de carbono com laser.','Peeling au carbone et au laser.']},
+      {n:['Limpeza de pele','Nettoyage de peau'],d:['Limpeza profunda do rosto.','Nettoyage en profondeur du visage.']},
+      {n:['Ledterapia','Thérapie LED'],d:['Sessões com luz LED.','Séances de lumière LED.']},
+      {n:['Fotobiomodulação','Photobiomodulation'],d:['Tratamento com luz de baixa intensidade.','Soin à la lumière de faible intensité.']}]},
+    {id:'perfuracoes',t:['Perfurações e tatuagens','Piercings et tatouages'],items:[
+      {n:['Perfurações de orelhas','Perçage des oreilles'],d:['Furo das orelhas, com os cuidados explicados para casa.','Perçage des oreilles, avec les soins à faire à la maison expliqués.']},
+      {n:['Tatuagens','Tatouages'],d:['Fale com a Isabel sobre a sua ideia.','Parlez de votre idée avec Isabel.']}]}
+  ];
+  var filter='all';
+  function buildFilter(){$('tfilter').innerHTML='';[['all',['Todos','Tous']]].concat(CATS.map(function(c){return [c.id,c.t]})).forEach(function(f){var b=el('button','tab',L(f[1]));b.type='button';b.dataset.f=f[0];b.setAttribute('aria-pressed',f[0]===filter?'true':'false');b.addEventListener('click',function(){filter=f[0];buildFilter();buildCards()});$('tfilter').appendChild(b)})}
+  function buildCards(){
+    var g=$('tgrid');g.innerHTML='';
+    CATS.forEach(function(c){if(filter!=='all'&&filter!==c.id)return;c.items.forEach(function(it,i){
+      var a=el('article','tcard'),ph=fotos('tratamento:'+c.id+':'+i)[0];
+      var top=el('div','tcard-ph'+(ph?'':' none'));if(ph){top.appendChild(img(ph,true,'(max-width:620px) 92vw, 340px'));if(/img\/servicos\//.test(ph.src))top.appendChild(el('span','tcard-ill',T('Imagem ilustrativa','Image d’illustration')))}top.appendChild(el('span','tcard-cat',L(c.t)));if(it.dest)a.classList.add('dest');a.appendChild(top);
+      var b=el('div','tcard-b');b.appendChild(el('h3',null,L(it.n)));
+      var m=el('p','tcard-m');if(it.dest)m.appendChild(el('span','tcard-star',T('Especialidade','Spécialité')));m.appendChild(document.createTextNode((it.s?L(it.s)+' · ':'')+T('Preço após avaliação','Prix après évaluation')));b.appendChild(m);
+      b.appendChild(el('p','tcard-d',L(it.d)));
+      if(it.i||it.cu){var dt=el('details','tcard-x');dt.appendChild(el('summary',null,T('Para quem é e cuidados','Pour qui et soins')));if(it.i){dt.appendChild(el('b',null,T('Indicado para','Indiqué pour')));var ul=el('ul');L(it.i).forEach(function(x){ul.appendChild(el('li',null,x))});dt.appendChild(ul)}if(it.cu){dt.appendChild(el('b',null,T('Depois da sessão','Après la séance')));dt.appendChild(el('p',null,L(it.cu)))}b.appendChild(dt)}
+      var bt=el('button','tcard-go',T('Marcar avaliação','Réserver une évaluation'));bt.type='button';bt.setAttribute('aria-label',T('Marcar avaliação: ','Réserver une évaluation : ')+L(it.n));
+      bt.addEventListener('click',function(){state.key=c.id+':'+i;fillSvc();upd();$('marcar').scrollIntoView({behavior:'smooth'})});b.appendChild(bt);
+      a.appendChild(b);g.appendChild(a);
+    })});
   }
 
-  // Instagram posts: our own cover cards; the post opens over the page (or on Instagram inside a preview frame, where embeds are blocked)
-  var POSTS=[['DeohrdpDg7Y','Antes e depois','Avant et après'],['DeRZ_OZDkdb','Cobrir ou remover?','Couvrir ou retirer ?'],['De3-gbkEfm_','5 coisas a saber','5 choses à savoir'],['DdoYL4JHDeU','Red flags da micro antiga','Les signaux d’alerte'],['DeeOikBEpSi','Com a Isabel','Avec Isabel'],['De9O8TznBvY','Feedback de cliente','Avis de cliente'],['Dey72HvoK1E','O laser','Le laser'],['DdbTvVdAAeB','Antes e depois','Avant et après'],['Del85kxjZ9j','Sobrancelhas naturais','Sourcils naturels'],['DegzThMjnPv','Feedback de cliente','Avis de cliente'],['DdWJQufoG4J','O resultado','Le résultat'],['DdtUYwhnB2d','Feedback de cliente','Avis de cliente']];
-  var framed=window.self!==window.top, igd=$('igd');
-  function buildPosts(){
-    $('igrow').innerHTML='';
-    POSTS.forEach(function(r){
-      var url='https://www.instagram.com/p/'+r[0]+'/';
-      var c=el(framed?'a':'button','reelc');if(framed){c.href=url;c.target='_blank';c.rel='noopener'}else c.type='button';
-      c.setAttribute('aria-label',T('Ver a publicação ','Voir la publication ')+T(r[1],r[2]));
-      var im=el('img');im.src='img/ig/'+r[0]+'.jpg';im.alt='';im.loading='lazy';c.appendChild(im);c.appendChild(el('span','play'));
-      var cap=el('span','cap');cap.appendChild(el('b',null,T(r[1],r[2])));cap.appendChild(el('span',null,'@revivesteticaintegrada'));c.appendChild(cap);
-      if(!framed)c.addEventListener('click',function(){$('igframe').src=url+'embed/';$('igopen').href=url;if(igd.showModal)igd.showModal();else igd.setAttribute('open','')});
-      $('igrow').appendChild(c);
-    });
+  // treatment finder: one question, shows the related category and invites an evaluation (no diagnosis)
+  var FINDER=[
+    {q:['Remover uma micropigmentação antiga','Retirer une ancienne micropigmentation'],f:'laser',k:'laser:0',a:['A despigmentação a laser é a especialidade da Isabel. Na avaliação, ela vê o pigmento e diz se é melhor remover, corrigir ou esperar.','La dépigmentation au laser est la spécialité d’Isabel. Lors de l’évaluation, elle observe le pigment et vous dit s’il vaut mieux retirer, corriger ou attendre.']},
+    {q:['Remover uma tatuagem','Retirer un tatouage'],f:'laser',k:'laser:2',a:['A remoção de tatuagens a laser faz-se por sessões. Envie uma foto da tatuagem para uma primeira opinião.','Le détatouage au laser se fait en plusieurs séances. Envoyez une photo du tatouage pour un premier avis.']},
+    {q:['Melhorar o aspeto da minha pele','Améliorer l’aspect de ma peau'],f:'pele',k:'pele:0',a:['O ponto de partida é a análise avançada da pele 3D. A partir dela, a Isabel indica os tratamentos de pele adequados.','Le point de départ est l’analyse avancée de la peau en 3D. À partir de là, Isabel indique les soins adaptés.']},
+    {q:['Cuidar das minhas sobrancelhas','Prendre soin de mes sourcils'],f:'sobrancelhas',k:'sobrancelhas:0',a:['Há regeneração com exossomos e micropigmentação. Na avaliação vê-se o que faz sentido para as suas sobrancelhas.','Il existe la régénération aux exosomes et la micropigmentation. L’évaluation permet de voir ce qui convient à vos sourcils.']},
+    {q:['Ainda não sei','Je ne sais pas encore'],f:'all',k:'aval',a:['Não tem de saber. Peça uma avaliação e envie uma foto da zona: a Isabel orienta-a.','Pas besoin de savoir. Demandez une évaluation et envoyez une photo de la zone : Isabel vous oriente.']}
+  ];
+  var fsel=-1;
+  function buildFinder(){
+    $('finder').innerHTML='';
+    FINDER.forEach(function(o,i){var bt=el('button','finder-o',L(o.q));bt.type='button';bt.setAttribute('aria-pressed',i===fsel?'true':'false');bt.addEventListener('click',function(){fsel=i;buildFinder()});$('finder').appendChild(bt)});
+    var out=$('finderout');out.innerHTML='';out.hidden=fsel<0;if(fsel<0)return;
+    var o=FINDER[fsel];out.appendChild(el('p',null,L(o.a)));
+    var row=el('div','finder-ctas');
+    var v=el('button','btn',T('Ver estes tratamentos','Voir ces soins'));v.type='button';v.addEventListener('click',function(){filter=o.f;buildFilter();buildCards();$('tratamentos').scrollIntoView({behavior:'smooth'})});
+    var m=el('button','btn btn-fill',T('Pedir avaliação','Demander une évaluation'));m.type='button';m.addEventListener('click',function(){state.key=o.k;fillSvc();upd();$('marcar').scrollIntoView({behavior:'smooth'})});
+    if(o.f!=='all')row.appendChild(v);row.appendChild(m);out.appendChild(row);
   }
-  function closeIg(){$('igframe').src='about:blank';igd.close?igd.close():igd.removeAttribute('open')}
-  $('igx').addEventListener('click',closeIg);
-  igd.addEventListener('click',function(e){if(e.target===igd)closeIg()});
-  igd.addEventListener('cancel',function(){$('igframe').src='about:blank'});
 
-  // marquee
-  var MQ=[['Despigmentação de sobrancelhas','Dépigmentation des sourcils'],['Remoção de tatuagens','Détatouage'],['Exossomos ASCE','Exosomes ASCE'],['Peeling Hollywood','Peeling Hollywood'],['Análise 3D da pele','Analyse 3D de la peau'],['Ledterapia','Thérapie LED'],['Fotobiomodulação','Photobiomodulation'],['Micropigmentação','Micropigmentation'],['Depilação a laser','Épilation au laser'],['Perfurações','Piercings']];
-  function buildMq(){$('marq').innerHTML='';MQ.concat(MQ).forEach(function(w){$('marq').appendChild(el('span',null,T(w[0],w[1])))})}
+  // method photo and the space gallery
+  function buildMetodo(){var f=fotos('metodo')[0];$('metodoph').innerHTML='';if(!f)return;$('metodoph').appendChild(img(f,true));if(f.leg)$('metodoph').appendChild(el('figcaption',null,L(f.leg)))}
+  function buildRooms(){$('rooms').innerHTML='';fotos('espaco').forEach(function(f){var fig=el('figure','room');var ph=el('div','ph');ph.appendChild(img(f,true));fig.appendChild(ph);var cap=el('figcaption');cap.appendChild(el('b',null,L(f.leg)));cap.appendChild(el('span',null,L(f.sub)));fig.appendChild(cap);$('rooms').appendChild(fig)})}
+
+  // Instagram posts and client messages, linking to the original post
+  function buildIg(id,onde){$(id).innerHTML='';fotos(onde).forEach(function(f){var a=el('a','igp');a.href='https://www.instagram.com/p/'+f.code+'/';a.target='_blank';a.rel='noopener';a.setAttribute('aria-label',L(f.alt)+T(' (abre o Instagram)',' (ouvre Instagram)'));a.appendChild(img(f,true));a.appendChild(el('span','igp-go',T('Ver no Instagram','Voir sur Instagram')));$(id).appendChild(a)})}
 
   // reviews: the real Google reviews with text
-  var REV=[['Mariana Barros','há 3 meses','“Excelente profissional! Dedicada e extremamente competente. Ambiente acolhedor e muito limpo. Fiz remoção de micropigmentação e não senti dor e no dia seguinte nem parecia ter feito o procedimento, pois não agrediu em nada a minha pele. O resultado foi perfeito em apenas 3 sessões. Recomendo muito!”'],['Ingrid Rocha De Andrade','há 4 meses','“Excelente profissional! Atendimento impecável, muito atenciosa e cuidadosa do início ao fim. O ambiente é agradável, tudo muito limpo e organizado, e o resultado ficou exatamente como eu esperava. Recomendo de olhos fechados!”'],['Chirlei Weber','há 3 meses','“O meu primeiro procedimento com a Isabel foi há 5 anos. Este ano voltei a precisar e logo procurei a Isabel para fazer uma remoção. Como sempre, fui bem atendida e o trabalho é altamente qualificado.”'],['Sophia Miranda','há 3 meses','“A Isabel é uma profissional incrível e uma pessoa genuinamente adorável! Explica cada etapa do processo com clareza e está sempre disponível para responder a quaisquer perguntas.”'],['Mário Castro','há 4 meses','“Uma profissional de excelência com resultados comprovados. A trabalhar numa área onde tem muita gente, ela destaca-se pela qualidade e conhecimento. Muito obrigado Isabel.”'],['Fátima Rodrigues','há 3 meses','“Além de ser uma pessoa muito especial e querida, é uma excelente profissional. Dedicada, educada e atenciosa.”'],['Débora Rossi','há 2 meses','“Uma ótima profissional, atendimento de excelência. Super recomendo!”']];
-  REV.forEach(function(r){var f=el('figure','rev');f.appendChild(el('div','st','★★★★★'));f.appendChild(el('p',null,r[2]));f.appendChild(el('div','who',r[0]+' · '+r[1]));$('revs').appendChild(f)});
+  var REV=[['Mariana Barros','há 3 meses','“Excelente profissional! Dedicada e extremamente competente. Ambiente acolhedor e muito limpo. Fiz remoção de micropigmentação e não senti dor e no dia seguinte nem parecia ter feito o procedimento. O resultado foi perfeito em apenas 3 sessões. Recomendo muito!”'],['Ingrid Rocha De Andrade','há 4 meses','“Excelente profissional! Atendimento impecável, muito atenciosa e cuidadosa do início ao fim. O ambiente é agradável, tudo muito limpo e organizado, e o resultado ficou exatamente como eu esperava. Recomendo de olhos fechados!”'],['Chirlei Weber','há 3 meses','“O meu primeiro procedimento com a Isabel foi há 5 anos. Este ano voltei a precisar e logo procurei a Isabel para fazer uma remoção. Como sempre, fui bem atendida e o trabalho é altamente qualificado.”'],['Sophia Miranda','há 3 meses','“A Isabel é uma profissional incrível e uma pessoa genuinamente adorável! Explica cada etapa do processo com clareza e está sempre disponível para responder a quaisquer perguntas.”'],['Mário Castro','há 4 meses','“Uma profissional de excelência com resultados comprovados. A trabalhar numa área onde tem muita gente, ela destaca-se pela qualidade e conhecimento. Muito obrigado Isabel.”'],['Fátima Rodrigues','há 3 meses','“Além de ser uma pessoa muito especial e querida, é uma excelente profissional. Dedicada, educada e atenciosa.”'],['Débora Rossi','há 2 meses','“Uma ótima profissional, atendimento de excelência. Super recomendo!”']];
+  REV.forEach(function(r){var f=el('figure','rev');f.appendChild(el('div','st','★★★★★'));f.appendChild(el('p',null,r[2]));f.appendChild(el('figcaption','who',r[0]+' · '+r[1]));$('revs').appendChild(f)});
 
   // socials
-  [['https://www.instagram.com/revivesteticaintegrada',IG,'@revivesteticaintegrada','Instagram · 2.800 seguidores'],['https://www.facebook.com/revivesteticaintegrada/',FB,'Reviv Estética Integrada','Facebook'],['https://maps.google.com/?cid=2973468296520328192',PIN,'Reviv · Isabel Miranda','Google Maps · 5,0 ★']].forEach(function(s){var a=el('a');a.href=s[0];a.target='_blank';a.rel='noopener';a.innerHTML=s[1];var sp=el('span',null,s[2]);sp.appendChild(el('small',null,s[3]));a.appendChild(sp);$('socials').appendChild(a)});
+  [['https://www.instagram.com/revivesteticaintegrada',IG,'@revivesteticaintegrada',['Instagram · 2.839 seguidores (29/10/2026)','Instagram · 2 839 abonnés (29/10/2026)']],['https://www.facebook.com/revivesteticaintegrada/',FB,'Reviv Estética Integrada',['Facebook','Facebook']],['https://maps.google.com/?cid=2973468296520328192',PIN,'Reviv · Isabel Miranda',['Google Maps · 5,0 ★','Google Maps · 5,0 ★']]].forEach(function(s){var a=el('a');a.href=s[0];a.target='_blank';a.rel='noopener';a.innerHTML=s[1];var sp=el('span',null,s[2]);var sm=el('small');sm.dataset.pt=s[3][0];sm.dataset.fr2=s[3][1];sp.appendChild(sm);a.appendChild(sp);$('socials').appendChild(a)});
+  function buildSocials(){Array.prototype.forEach.call(document.querySelectorAll('#socials small'),function(s){s.textContent=T(s.dataset.pt,s.dataset.fr2)})}
 
-  // horizontal scrollers: arrows + mouse drag
+  // horizontal scrollers: arrows, mouse drag, and a slow drift in the space gallery that stops on hover or touch
   Array.prototype.forEach.call(document.querySelectorAll('[data-scroll]'),function(b){b.addEventListener('click',function(){var r=$(b.dataset.scroll);var c=r.firstElementChild;r.scrollBy({left:(+b.dataset.dir)*((c?c.offsetWidth:320)+20),behavior:'smooth'})})});
-  ['rooms','revs','igrow'].forEach(function(id){
+  ['rooms','revs'].forEach(function(id){
     var r=$(id),down=false,sx=0,sl=0;
     r.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down=true;sx=e.clientX;sl=r.scrollLeft});
     window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)r.classList.add('drag');r.scrollLeft=sl-dx});
     window.addEventListener('pointerup',function(){if(!down)return;down=false;setTimeout(function(){r.classList.remove('drag')},0)});
   });
-
-  // before / after comparator, with a short sweep the first time it is seen
-  var cmp=$('cmp'),rng=$('cmprange'),swept=false;
-  function setPos(v){cmp.style.setProperty('--pos',v+'%');rng.value=v}
-  rng.addEventListener('input',function(){swept=true;setPos(+rng.value)});
-  function sweep(){if(swept)return;swept=true;var t0=Date.now();var iv=setInterval(function(){var t=(Date.now()-t0)/1800;if(t>=1){clearInterval(iv);setPos(50);return}setPos(Math.round(50+30*Math.sin(t*Math.PI*2)))},30)}
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function drift(){
+    var r=$('rooms'),paused=false,dir=1,acc=0;if(reduce)return;
+    ['pointerenter','touchstart','focusin'].forEach(function(e){r.addEventListener(e,function(){paused=true},{passive:true})});
+    r.addEventListener('pointerleave',function(){paused=false});
+    setInterval(function(){
+      if(paused||document.hidden)return;var b=r.getBoundingClientRect();if(b.bottom<0||b.top>innerHeight)return;
+      var max=r.scrollWidth-r.clientWidth;if(max<=0)return;
+      acc+=dir*0.6;var step=acc|0;if(!step)return;acc-=step;
+      r.style.scrollSnapType='none';r.scrollLeft+=step;
+      if(r.scrollLeft>=max-1)dir=-1;else if(r.scrollLeft<=0)dir=1;
+    },30);
+  })();
 
   // hours + live status (Lisbon), Torres Vedras: Monday to Friday 9:00 to 17:00
   var DAYS={pt:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],fr:['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi']};
-  var SHORT={pt:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],fr:['Dim','Lun','Mar','Mer','Jeu','Ven','Sam']};
+  var MONTHS={pt:['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'],fr:['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']};
   var OPEN={1:1,2:1,3:1,4:1,5:1},FROM=540,TO=1020;
   var now=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Lisbon'}));
-  var d0=now.getDay(),m=now.getHours()*60+now.getMinutes();
-  var isOpen=OPEN[d0]&&m>=FROM&&m<TO;
+  var d0=now.getDay(),m=now.getHours()*60+now.getMinutes(),isOpen=OPEN[d0]&&m>=FROM&&m<TO;
   function buildHours(){
-    var rows='';[1,2,3,4,5,6,0].forEach(function(i){rows+='<tr'+(i===d0?' class="today"':'')+'><td>'+DAYS[lang][i]+(i===d0?T(' (hoje)',' (aujourd’hui)'):'')+'</td><td>'+(OPEN[i]?'9:00 – 17:00':T('Fechado','Fermé'))+'</td></tr>'});
+    var rows='';[1,2,3,4,5,6,0].forEach(function(i){rows+='<tr'+(i===d0?' class="today"':'')+'><td>'+DAYS[lang][i]+'</td><td>'+(OPEN[i]?'9:00 – 17:00':T('Fechado','Fermé'))+'</td></tr>'});
     $('hrs').innerHTML=rows;
     var txt=isOpen?T('Aberto agora · até às 17:00','Ouvert · jusqu’à 17h'):(OPEN[d0]&&m<FROM?T('Abre hoje às 9:00','Ouvre aujourd’hui à 9h'):T('Fechado agora · responde pelo WhatsApp','Fermé · réponse sur WhatsApp'));
-    ['status','hstatus'].forEach(function(id){var e=$(id);e.className='status'+(isOpen?'':' closed');e.querySelector('span').textContent=txt});
+    var e=$('status');e.className='status'+(isOpen?'':' closed');e.querySelector('span').textContent=txt;
   }
 
-  // booking: city → treatment → day → preferred time → name → WhatsApp
-  var state={city:lang==='fr'?'ge':'tv',key:'laser:0',day:0,time:''};
-  var dates=[];
-  for(var k=0;dates.length<14&&k<28;k++){var x=new Date(now.getFullYear(),now.getMonth(),now.getDate()+k);if(!OPEN[x.getDay()])continue;if(k===0&&m>=TO-60)continue;dates.push({k:k,w:x.getDay(),d:x.getDate(),mo:x.getMonth()+1})}
-  function press(id,fn){Array.prototype.forEach.call($(id).children,function(c,i){c.setAttribute('aria-pressed',fn(c,i)?'true':'false')})}
-  function cityName(k){var c=CITIES[k];return T(c.name,c.fr)}
-  function buildCities(){$('pros').innerHTML='';Object.keys(CITIES).forEach(function(k){var C=CITIES[k],b=el('button','pro');b.type='button';b.dataset.k=k;b.appendChild(el('span','pm',C.mono));b.appendChild(el('b',null,cityName(k)));b.appendChild(el('small',null,T(C.sub[0],C.sub[1])));b.addEventListener('click',function(){state.city=k;press('pros',function(c){return c.dataset.k===k});upd()});$('pros').appendChild(b)});press('pros',function(c){return c.dataset.k===state.city})}
-  function buildDays(){$('days').innerHTML='';dates.forEach(function(o,i){var b=el('button','day');b.type='button';b.appendChild(el('small',null,o.k===0?T('Hoje','Auj.'):o.k===1?T('Amanhã','Demain'):SHORT[lang][o.w]));b.appendChild(el('b',null,String(o.d)));b.setAttribute('aria-label',DAYS[lang][o.w]+' '+o.d+'/'+o.mo);b.addEventListener('click',function(){state.day=i;press('days',function(c,j){return j===i});renderSlots();upd()});$('days').appendChild(b)});press('days',function(c,i){return i===state.day})}
-  function item(){var p=state.key.split(':');var c=CATS.find(function(x){return x.id===p[0]});return c?c.items[+p[1]]:null}
-  function fillSvc(){var s=$('svc');s.innerHTML='';CATS.forEach(function(c){var og=el('optgroup');og.label=T(c.t[0],c.t[1])+' '+T(c.em[0],c.em[1]);c.items.forEach(function(it,i){var o=el('option',null,nm(it));o.value=c.id+':'+i;og.appendChild(o)});s.appendChild(og)});var o=el('option',null,T('Ainda não sei: quero uma avaliação','Je ne sais pas encore : je veux une évaluation'));o.value='aval';s.appendChild(o);s.value=state.key}
-  function selectSvc(cat,i){state.key=cat+':'+i;$('svc').value=state.key;upd()}
-  $('svc').addEventListener('change',function(){state.key=this.value;upd()});
-  function fmt(x){return Math.floor(x/60)+':'+('0'+x%60).slice(-2)}
-  function renderSlots(){
-    var box=$('slots');box.innerHTML='';var today=dates[state.day]&&dates[state.day].k===0;
-    for(var t=FROM;t+60<=TO;t+=30){var b=el('button','chip',fmt(t));b.type='button';b.dataset.v=fmt(t);b.disabled=today&&t<=m+30;b.addEventListener('click',function(){state.time=state.time===this.dataset.v?'':this.dataset.v;press('slots',function(c){return c.dataset.v===state.time});upd()});box.appendChild(b)}
-    if(!box.querySelector('.chip:not(:disabled)')&&state.day<dates.length-1){state.day++;press('days',function(c,j){return j===state.day});return renderSlots()}
-    if(!box.querySelector('[data-v="'+state.time+'"]:not(:disabled)')){var f=box.querySelector('.chip:not(:disabled)');state.time=f?f.dataset.v:''}
-    press('slots',function(c){return c.dataset.v===state.time});
+  // booking. Free hours come from AVAIL_URL; the same JSON shape can later come from a small server function
+  // that reads Isabel's Google Calendar (free/busy). No keys or tokens ever go in this page.
+  var AVAIL_URL='disponibilidade.json';
+  var AVAIL={cidades:{tv:{semana:{1:['9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'],2:['9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'],3:['9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'],4:['9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'],5:['9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']},datas:{},fechado:[]},cs:{preferencia:true,semana:{},datas:{},fechado:[]},ge:{preferencia:true,semana:{},datas:{},fechado:[]}}};
+  var CITIES={tv:{name:['Torres Vedras','Torres Vedras'],mono:'TV',sub:['Shopping Banix','Shopping Banix']},cs:{name:['Cascais','Cascais'],mono:'Cs',sub:['Por marcação','Sur rendez-vous']},ge:{name:['Genebra','Genève'],mono:'Ge',sub:['Por marcação','Sur rendez-vous']}};
+  var state={city:lang==='fr'?'ge':'tv',key:'laser:0',date:null,time:'',month:new Date(now.getFullYear(),now.getMonth(),1)};
+  function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+  function toMin(t){var p=t.split(':');return +p[0]*60+(+p[1])}
+  function hoursFor(d){
+    var c=AVAIL.cidades[state.city]||{},k=iso(d);
+    if((c.fechado||[]).indexOf(k)>=0)return[];
+    var h=(c.datas&&c.datas[k])||(c.semana&&c.semana[d.getDay()])||[];
+    if(c.preferencia&&!h.length&&d.getDay()>0&&d.getDay()<6)h=['_'];
+    var today=iso(d)===iso(now);
+    return h.filter(function(t){return t==='_'||!today||toMin(t)>m+60});
   }
+  function hasAny(){var c=AVAIL.cidades[state.city]||{};return c.preferencia||Object.keys(c.semana||{}).length||Object.keys(c.datas||{}).length}
+  function buildCal(){
+    var cal=$('cal');cal.innerHTML='';
+    if(!hasAny()){cal.appendChild(el('p','cal-none',T('As datas em '+L(CITIES[state.city].name)+' são combinadas pelo WhatsApp. Envie o pedido e a Isabel responde com os dias disponíveis.','Les dates à '+L(CITIES[state.city].name)+' sont fixées sur WhatsApp. Envoyez la demande et Isabel vous répond avec les jours disponibles.')));state.date=null;state.time='';$('slots').innerHTML='';$('slotlabel').hidden=true;return}
+    $('slotlabel').hidden=false;
+    var mo=state.month,first=new Date(now.getFullYear(),now.getMonth(),1),last=new Date(now.getFullYear(),now.getMonth()+2,1);
+    var head=el('div','cal-h');
+    var pv=el('button','cal-nav','‹');pv.type='button';pv.setAttribute('aria-label',T('Mês anterior','Mois précédent'));pv.disabled=mo<=first;pv.addEventListener('click',function(){state.month=new Date(mo.getFullYear(),mo.getMonth()-1,1);buildCal()});
+    var nx=el('button','cal-nav','›');nx.type='button';nx.setAttribute('aria-label',T('Mês seguinte','Mois suivant'));nx.disabled=mo>=last;nx.addEventListener('click',function(){state.month=new Date(mo.getFullYear(),mo.getMonth()+1,1);buildCal()});
+    head.appendChild(pv);head.appendChild(el('b',null,MONTHS[lang][mo.getMonth()]+' '+mo.getFullYear()));head.appendChild(nx);cal.appendChild(head);
+    var grid=el('div','cal-g');
+    (lang==='fr'?['L','M','M','J','V','S','D']:['S','T','Q','Q','S','S','D']).forEach(function(w){grid.appendChild(el('span','cal-w',w))});
+    var off=(mo.getDay()+6)%7;for(var i=0;i<off;i++)grid.appendChild(el('span'));
+    var dim=new Date(mo.getFullYear(),mo.getMonth()+1,0).getDate(),firstFree=null,today0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    for(var d=1;d<=dim;d++){
+      var day=new Date(mo.getFullYear(),mo.getMonth(),d),free=day>=today0&&hoursFor(day).length>0;
+      var b=el('button','cal-d',String(d));b.type='button';b.disabled=!free;b.dataset.iso=iso(day);
+      b.setAttribute('aria-label',DAYS[lang][day.getDay()]+' '+d+' '+MONTHS[lang][mo.getMonth()]+(free?'':T(', sem horas livres',', complet')));
+      if(free&&!firstFree)firstFree=iso(day);
+      (function(day){b.addEventListener('click',function(){state.date=iso(day);state.time='';buildCal();upd()})})(day);
+      grid.appendChild(b);
+    }
+    cal.appendChild(grid);
+    if(!state.date||!grid.querySelector('[data-iso="'+state.date+'"]:not(:disabled)'))state.date=firstFree;
+    Array.prototype.forEach.call(grid.querySelectorAll('.cal-d'),function(b){b.setAttribute('aria-pressed',b.dataset.iso===state.date?'true':'false')});
+    renderSlots();
+  }
+  function renderSlots(){
+    var box=$('slots');box.innerHTML='';if(!state.date)return;
+    var p=state.date.split('-'),hs=hoursFor(new Date(+p[0],+p[1]-1,+p[2]));
+    hs=hs.filter(function(t){return t!=='_'});$('slotlabel').hidden=!hs.length;if(!hs.length){state.time='';box.appendChild(el('p','cal-none',T('A hora é combinada com a Isabel pelo WhatsApp.','L’heure est fixée avec Isabel sur WhatsApp.')));return}
+    hs.forEach(function(t){var b=el('button','chip',t);b.type='button';b.dataset.v=t;b.addEventListener('click',function(){state.time=t;press();upd()});box.appendChild(b)});
+    if(hs.indexOf(state.time)<0)state.time=hs[0]||'';
+    press();
+    function press(){Array.prototype.forEach.call(box.children,function(c){c.setAttribute('aria-pressed',c.dataset.v===state.time?'true':'false')})}
+  }
+  function item(){var p=state.key.split(':');var c=CATS.find(function(x){return x.id===p[0]});return c?c.items[+p[1]]:null}
+  function buildCities(){$('pros').innerHTML='';Object.keys(CITIES).forEach(function(k){var C=CITIES[k],b=el('button','pro');b.type='button';b.dataset.k=k;b.setAttribute('aria-pressed',k===state.city?'true':'false');b.appendChild(el('span','pm',C.mono));b.appendChild(el('b',null,L(C.name)));b.appendChild(el('small',null,L(C.sub)));b.addEventListener('click',function(){state.city=k;state.date=null;buildCities();buildCal();upd()});$('pros').appendChild(b)})}
+  function fillSvc(){var s=$('svc');s.innerHTML='';CATS.forEach(function(c){var og=el('optgroup');og.label=L(c.t);c.items.forEach(function(it,i){var o=el('option',null,L(it.n));o.value=c.id+':'+i;og.appendChild(o)});s.appendChild(og)});var o=el('option',null,T('Ainda não sei: quero uma avaliação','Je ne sais pas encore : je veux une évaluation'));o.value='aval';s.appendChild(o);s.value=state.key}
+  $('svc').addEventListener('change',function(){state.key=this.value;upd()});
   function upd(){
-    var it=item(),o=dates[state.day],n=$('nm').value.trim(),svc=it?nm(it):T('uma avaliação','une évaluation'),city=cityName(state.city),photo=$('photo').checked;
-    var pk=$('pick');pk.innerHTML='';
-    if(it&&it.s){var a=el('span');a.innerHTML=LOOP;a.appendChild(document.createTextNode(T(it.s,it.sf)));pk.appendChild(a)}
-    pk.appendChild(el('span',null,T('Preço depois da avaliação','Prix après évaluation')));
+    var it=item(),n=$('nm').value.trim(),tel=$('tel').value.trim(),svc=it?L(it.n):T('uma avaliação','une évaluation'),city=L(CITIES[state.city].name),dt='';
+    if(state.date){var p=state.date.split('-'),dd=new Date(+p[0],+p[1]-1,+p[2]);dt=DAYS[lang][dd.getDay()].toLowerCase()+' '+(+p[2])+'/'+(+p[1])}
     var msg;
     if(lang==='fr'){
-      msg='Bonjour Isabel ! '+(n?'Je m’appelle '+n+'. ':'')+'Je souhaite une évaluation pour : '+svc+', à '+city;
-      if(o)msg+=', '+DAYS.fr[o.w].toLowerCase()+' '+o.d+'/'+o.mo;
-      msg+=state.time?', vers '+state.time.replace(':','h'):', heure à convenir';
-      msg+='.'+(photo?' Je vous envoie une photo de la zone.':'')+' Avez-vous une disponibilité ?';
+      msg='Bonjour Isabel ! Je souhaite demander une évaluation.\n\nPrénom : '+(n||'…')+'\nSoin : '+svc+'\nVille : '+city+'\nJour souhaité : '+(dt||'à convenir')+'\nHeure souhaitée : '+(state.time?state.time.replace(':','h'):'à convenir')+(tel?'\nTéléphone : '+tel:'')+'\n\nMerci de me confirmer la disponibilité.';
     }else{
-      msg='Olá Isabel! '+(n?'O meu nome é '+n+'. ':'')+'Gostava de marcar uma avaliação: '+svc+', em '+city;
-      if(o)msg+=', '+DAYS.pt[o.w].toLowerCase()+' '+o.d+'/'+o.mo;
-      msg+=state.time?', às '+state.time:', hora a combinar';
-      msg+='.'+(photo?' Vou enviar uma foto da zona.':'')+' Tem disponibilidade?';
+      msg='Olá Isabel! Gostava de pedir uma avaliação.\n\nNome: '+(n||'…')+'\nTratamento: '+svc+'\nCidade: '+city+'\nDia preferido: '+(dt||'a combinar')+'\nHora preferida: '+(state.time||'a combinar')+(tel?'\nTelefone: '+tel:'')+'\n\nPode confirmar a disponibilidade?';
     }
-    $('msg').textContent=msg;$('ownermsg').textContent=msg;
+    $('msg').textContent=msg;
     $('sumtitle').textContent=T('Mensagem para a Isabel · ','Message pour Isabel · ')+NUM;
     $('sendlabel').textContent=T('Enviar pedido à Isabel','Envoyer la demande à Isabel');
-    $('chatwho').textContent='Nova cliente · '+city;
     $('send').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
   }
-  ['nm','photo'].forEach(function(id){$(id).addEventListener('input',upd);$(id).addEventListener('change',upd)});
+  ['nm','tel'].forEach(function(id){$(id).addEventListener('input',function(){if(id==='nm'&&$('nm').value.trim())$('nmerr').hidden=true;upd()})});
+  $('send').addEventListener('click',function(e){if(!$('nm').value.trim()){e.preventDefault();$('nmerr').hidden=false;$('nm').setAttribute('aria-invalid','true');$('nm').focus()}else $('nm').removeAttribute('aria-invalid')});
   $('bookform').addEventListener('submit',function(e){e.preventDefault()});
+  fetch(AVAIL_URL,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.cidades){AVAIL=j;state.date=null;buildCal();upd()}}).catch(function(){});
 
-  // headings: split into words for the entrance
-  function split(h){var parts=[];Array.prototype.forEach.call(h.childNodes,function(nd){if(nd.nodeType===3){nd.textContent.split(/(\s+)/).forEach(function(w){if(w.trim())parts.push({t:w});else if(w)parts.push({s:w})})}else parts.push({n:nd})});h.textContent='';var i=0;parts.forEach(function(p){if(p.s){h.appendChild(document.createTextNode(p.s));return}var sp=el('span','w');if(p.t)sp.textContent=p.t;else sp.appendChild(p.n);sp.style.transitionDelay=(i++*70)+'ms';h.appendChild(sp)})}
-  // static texts: keep the Portuguese before the headings are split, then swap with data-fr
+  // screen-reader labels written in the page in Portuguese, and their French
+  var ARIA={'Reviv Estética Integrada, início':'Reviv Estética Integrada, accueil','Menu':'Menu','Abrir menu':'Ouvrir le menu','Menu principal':'Menu principal','Apresentação':'Présentation','Tratamentos principais':'Soins principaux','Porquê a Reviv':'Pourquoi Reviv','Casos':'Cas','Comparar antes e depois':'Comparer avant et après','O que pretende':'Ce que vous souhaitez','Filtrar tratamentos':'Filtrer les soins','Anterior':'Précédent','Seguinte':'Suivant','Avaliações':'Avis','Cidade':'Ville','Hora':'Heure','Horário':'Horaires','Contacto rápido':'Contact rapide'};
+
+  // static texts: Portuguese in the page, French in data-fr
   var bil=Array.prototype.slice.call(document.querySelectorAll('[data-fr]'));
   bil.forEach(function(e){e.dataset.pt=e.innerHTML});
   function applyLang(first){
     document.documentElement.lang=lang==='fr'?'fr':'pt-PT';
     $('lang').textContent=lang==='fr'?'PT':'FR';
-    $('lang').setAttribute('aria-label',lang==='fr'?'Mudar para português':'Passer en français');
-    if(!first||lang==='fr')bil.forEach(function(e){e.innerHTML=lang==='fr'?e.dataset.fr:e.dataset.pt;if(e.classList.contains('split'))split(e)});
-    buildTabs();showCat(current,false);buildPosts();buildMq();buildHours();buildCities();buildDays();fillSvc();renderSlots();upd();
+    $('lang').setAttribute('aria-label',lang==='fr'?'PT, mudar para português':'FR, passer en français');
+    bil.forEach(function(e){var v=lang==='fr'?e.dataset.fr:e.dataset.pt;if(e.innerHTML!==v)e.innerHTML=v});
+    FOTOS.forEach(function(f){if(f._img)f._img.alt=L(f.alt)});
+    Array.prototype.forEach.call(document.querySelectorAll('[aria-label]'),function(e){var pt=e.dataset.ariaPt||(e.dataset.ariaPt=e.getAttribute('aria-label'));if(ARIA[pt])e.setAttribute('aria-label',lang==='fr'?ARIA[pt]:pt)});
+    var tasks=[buildCases,buildResMore,buildFilter,buildCards,buildFinder,buildMetodo,buildRooms,function(){buildIg('igrid','instagram')},function(){buildIg('fb','mensagens')},buildSocials,buildHours,buildCities,fillSvc,buildCal,upd];
+    if(first){(function run(){var f=tasks.shift();if(f){f();setTimeout(run,0)}else observe()})()}
+    else{tasks.forEach(function(f){f()});observe()}
   }
-  document.querySelectorAll('.split').forEach(function(h){if(!h.hasAttribute('data-fr')||lang==='pt')split(h)});
-  applyLang(true);
-  $('lang').addEventListener('click',function(){lang=lang==='fr'?'pt':'fr';try{localStorage.setItem('reviv-lang',lang)}catch(e){}applyLang(false)});
+  $('lang').addEventListener('click',function(){lang=lang==='fr'?'pt':'fr';try{localStorage.setItem('reviv-lang',lang)}catch(e){}applyLang()});
 
   // overlay menu
   var burger=$('burger');
-  function menu(open){document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('locked',open);burger.setAttribute('aria-expanded',open?'true':'false');burger.setAttribute('aria-label',open?'Fechar menu':'Abrir menu')}
+  function menu(open){document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('locked',open);burger.setAttribute('aria-expanded',open?'true':'false');burger.setAttribute('aria-label',open?T('Fechar menu','Fermer le menu'):T('Abrir menu','Ouvrir le menu'))}
   burger.addEventListener('click',function(){menu(!document.documentElement.classList.contains('menu-open'))});
   Array.prototype.forEach.call(document.querySelectorAll('#overlay a'),function(a,i){a.style.transitionDelay=(.15+i*.05)+'s';a.addEventListener('click',function(){menu(false)})});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')menu(false)});
 
-  // header state, parallax and reveals share one scroll loop
-  var top=$('top'),reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var targets=Array.prototype.slice.call(document.querySelectorAll('.rv-img,.split,.rev,.room,.ba-more figure,.ba-wide,.vs>div,.pillars li,.rules div,.gain,.socials a,.faq details,.timeline div,.trust div,.cities p'));
-  var speeds=reduce?[]:Array.prototype.slice.call(document.querySelectorAll('[data-speed]'));
-  var vh=window.innerHeight;
-  if(!reduce){targets.forEach(function(t){if(t.getBoundingClientRect().top>vh*0.92)t.classList.add('pre')})}
-  // reveals run straight from the scroll event (never only from requestAnimationFrame, which browsers pause
-  // in background tabs), and a slow timer re-checks, so nothing on screen can stay hidden
-  function reveal(){
-    vh=window.innerHeight;
-    top.classList.toggle('solid',window.scrollY>vh*.55);
-    for(var i=0;i<targets.length;i++){var t=targets[i];if(t.classList.contains('pre')&&t.getBoundingClientRect().top<vh*0.95){t.classList.add('show');t.classList.remove('pre')}}
-    if(!swept&&!reduce){var r=cmp.getBoundingClientRect();if(r.top<vh*.7&&r.bottom>0)sweep()}
+  // header state
+  var top=$('top');
+  function head(){top.classList.toggle('solid',window.scrollY>window.innerHeight*.55)}
+  window.addEventListener('scroll',head,{passive:true});head();
+
+  // section entrances: content is visible by default; only with JS, and only below the first screen, it starts 16px lower and faded.
+  // IntersectionObserver reveals it; anything already above the viewport (after a fast scroll) is revealed at once, so there are no gaps.
+  var io='IntersectionObserver' in window&&!reduce?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting||e.boundingClientRect.top<0){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'}):null;
+  function observe(){
+    var items=document.querySelectorAll('.rv:not(.in),.why-i:not(.in),.igp:not(.in),.tcard:not(.in),.room:not(.in),.rev:not(.in),.cityc:not(.in),.faq details:not(.in),.rules div:not(.in)');
+    Array.prototype.forEach.call(items,function(e){
+      if(!io||e.getBoundingClientRect().top<innerHeight){e.classList.add('in');return}
+      e.classList.add('rv-js');io.observe(e);
+    });
   }
-  var ticking=false;
-  function parallax(){ticking=false;speeds.forEach(function(e){var r=e.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;var c=(r.top+r.height/2-vh/2);e.style.transform='translate3d(0,'+(c*parseFloat(e.dataset.speed)).toFixed(1)+'px,0)'})}
-  function onScroll(){reveal();if(!ticking&&speeds.length){ticking=true;requestAnimationFrame(parallax)}}
-  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);
-  reveal();parallax();
-  setInterval(reveal,700);
-  document.addEventListener('visibilitychange',reveal);
+  function sweep(){Array.prototype.forEach.call(document.querySelectorAll('.rv-js:not(.in)'),function(e){if(e.getBoundingClientRect().top<innerHeight)e.classList.add('in')})}
+  window.addEventListener('scroll',sweep,{passive:true});setInterval(sweep,800);
+
+  // soft light under the pointer on cards (only where there is a mouse)
+  if(window.matchMedia&&matchMedia('(hover:hover)').matches&&!reduce)document.addEventListener('pointermove',function(e){var c=e.target.closest&&e.target.closest('.tcard,.cityc');if(!c)return;var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
+  applyLang(true);
 })();
 </script>
 
