@@ -21,10 +21,10 @@
 <style>[hidden]{display:none!important}</style>
 </head>
 <body>
-<link rel="preload" as="image" href="img/g/f07.jpg" imagesrcset="img/g/f07-m.jpg 525w, img/g/f07.jpg 1200w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="img/g/f07.jpg" imagesrcset="img/g/f07-m.jpg 525w, img/g/f07.jpg 1200w" imagesizes="(max-width:760px) 60vw, 100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,28,400;0,28,500;1,28,400;1,28,500&family=Jost:wght@400;500&display=swap">
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BeautySalon", "name": "Reviv – Isabel Miranda · Estética Integrada", "description": "Despigmentação de sobrancelhas, remoção de tatuagens a laser, regeneração com exossomos, micropigmentação e cuidados de pele em Torres Vedras, Cascais e Genebra.", "telephone": "+351918910174", "address": {"@type": "PostalAddress", "streetAddress": "Av. 5 de Outubro 21, Shopping Banix, 1.º andar, loja 102", "addressLocality": "Torres Vedras", "addressCountry": "PT"}, "geo": {"@type": "GeoCoordinates", "latitude": 39.0912084, "longitude": -9.2577674}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "15"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}], "areaServed": ["Torres Vedras", "Cascais", "Genève"], "sameAs": ["https://www.instagram.com/revivesteticaintegrada", "https://www.facebook.com/revivesteticaintegrada/"], "employee": [{"@type": "Person", "name": "Isabel Miranda", "jobTitle": "Especialista em procedimentos a laser"}]}
 </script>
@@ -874,6 +874,41 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
 /* phones: lighter movement, nothing hides content for long */
 @media (max-width:760px){.cmp.rv-js,.res-more figure.rv-js,.who-ph.rv-js{clip-path:inset(6% 0 0 0)}.rv-js{transform:translateY(12px)}}
 @media (prefers-reduced-motion:reduce){.prog{display:none}.hero .demo,.hero-mono,.hero-name,.hero h1,.hero-sub,.hero-tags,.hero-ctas,.hero-who,.hero-isa .seal{animation:none}.rv-js,.cmp.rv-js,.res-more figure.rv-js,.who-ph.rv-js,.hero-por.rv-js{clip-path:none!important}.eyebrow.rv-js::before{transform:none}}
+
+/* ===== audit fixes ===== */
+/* readable labels: nothing under 12px */
+.cmp-lbl,.tcard-ill,.tcard-cat,.tcard-star,.igp-go,.summary small{font-size:12px}
+/* results: the three real cases side by side on desktop, the wide collage underneath */
+.res-more{grid-template-columns:repeat(3,1fr);gap:16px}
+.res-more figure:not(.wide){aspect-ratio:4/5}
+.res-more figure:not(.wide) img{height:100%;object-fit:cover}
+/* phones: cases and treatments slide sideways instead of stacking, so the page stays short */
+@media (max-width:760px){
+  .res-more{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:-20px;padding:0 20px 8px;scrollbar-width:none}
+  .res-more::-webkit-scrollbar{display:none}
+  .res-more figure{flex:0 0 74%;scroll-snap-align:start}
+  .res-more figure.wide{flex-basis:92%;align-self:center}
+  .tgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:-20px;padding:4px 20px 14px;scrollbar-width:none}
+  .tgrid::-webkit-scrollbar{display:none}
+  .tgrid .tcard{flex:0 0 82%;scroll-snap-align:start}
+  .swipe{display:flex}
+  .who-ph{aspect-ratio:4/3;border-radius:200px 200px 4px 4px;max-width:none}
+  .isabel{margin-top:48px}
+  .why-i p{font-size:15.5px}
+}
+.swipe{display:none;align-items:center;gap:8px;margin:0 0 12px;font-size:13px;letter-spacing:.08em;color:var(--brown)}
+.swipe::after{content:"→";animation:nudge 1.6s var(--ease) 3}
+@keyframes nudge{0%,100%{transform:none}50%{transform:translateX(5px)}}
+
+.tcard-ph .tcard-cat{font-size:12px}
+@media (max-width:560px){.isabel-ph{width:min(64%,230px)}.pillars li{padding:16px 0}}
+
+/* audit 2: captions on the result photos, the city tick, compact city cards */
+.res-more figure:not(.wide){position:relative}
+.res-more figure:not(.wide) figcaption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:34px 14px 12px;text-align:left;font-size:16px;color:var(--ivory);background:linear-gradient(transparent,rgba(34,23,15,.78))}
+.pro[aria-pressed="true"] b::after{content:none}
+.pro[aria-pressed="true"] .pm::after{content:" ✓";font-family:var(--sans);font-style:normal;font-size:15px;color:var(--champagne-lt)}
+.cities3{align-items:start}
 </style>
 
 <a class="skip" href="#resultados" data-fr="Aller au contenu">Saltar para o conteúdo</a>
@@ -928,7 +963,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
       <div class="hero-isa">
         <figure class="hero-por"><img src="img/novas/isabel-retrato.jpg" srcset="img/novas/isabel-retrato-m.jpg 700w, img/novas/isabel-retrato.jpg 794w" sizes="(max-width:820px) 132px, 300px" alt="Isabel Miranda, especialista da Reviv" width="794" height="794" fetchpriority="high"></figure>
         <p class="hero-who"><b>Isabel Miranda</b><span data-fr="Spécialiste en laser et dépigmentation">Especialista em laser e despigmentação</span></p>
-        <a class="seal" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener">
+        <a class="seal" href="https://maps.google.com/?cid=2973642507304420352" target="_blank" rel="noopener">
           <span class="stars" aria-hidden="true">★★★★★</span><b>5,0</b><span data-fr="15 avis sur Google">15 avaliações no Google</span>
         </a>
       </div>
@@ -958,13 +993,14 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
       </div>
       <div class="cases" id="cases" role="group" aria-label="Casos"></div>
       <div class="cmp" id="cmp" style="--pos:50%">
-        <img id="cmpafter" src="" alt="">
-        <div class="cmp-before"><img id="cmpbefore" src="" alt=""></div>
+        <img id="cmpafter" src="" alt="" loading="lazy" decoding="async">
+        <div class="cmp-before"><img id="cmpbefore" src="" alt="" loading="lazy" decoding="async"></div>
         <span class="cmp-lbl l" data-fr="Avant">Antes</span><span class="cmp-lbl r" data-fr="Après">Depois</span>
         <div class="cmp-line" aria-hidden="true"><span class="cmp-knob">⟷</span></div>
         <input type="range" id="cmprange" min="0" max="100" value="50" aria-label="Comparar antes e depois">
       </div>
       <p class="hint" data-fr="Faites glisser pour comparer">Arraste para comparar</p>
+      <p class="swipe" aria-hidden="true" data-fr="Faites glisser pour voir d’autres cas">Deslize para ver mais casos</p>
       <div class="res-more" id="resmore"></div>
       <div class="res-foot">
         <p data-fr="Résultats de clientes d’Isabel. Chaque peau réagit différemment : le nombre de séances est défini lors de l’évaluation.">Resultados de clientes da Isabel. Cada pele reage de forma diferente: o número de sessões é definido na avaliação.</p>
@@ -994,6 +1030,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
         <p class="note" data-fr="Chaque traitement commence par une évaluation. Le prix dépend de la zone et du nombre de séances.">Cada tratamento começa com uma avaliação. O preço depende da zona e do número de sessões.</p>
       </div>
       <div class="tabs" id="tfilter" role="group" aria-label="Filtrar tratamentos"></div>
+      <p class="swipe" aria-hidden="true" data-fr="Faites glisser pour voir plus">Deslize para ver mais</p>
       <div class="tgrid" id="tgrid"></div>
       <div class="tmore"><button class="btn" type="button" id="tall">Ver todos os 15 tratamentos</button></div>
     </div>
@@ -1056,7 +1093,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
         <button class="arrow" type="button" data-scroll="revs" data-dir="-1" aria-label="Anterior">←</button>
         <button class="arrow" type="button" data-scroll="revs" data-dir="1" aria-label="Seguinte">→</button>
         <span class="sp"></span>
-        <a class="btn btn-light" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener" data-fr="Voir tous les avis sur Google">Ver todas no Google</a>
+        <a class="btn btn-light" href="https://maps.google.com/?cid=2973642507304420352" target="_blank" rel="noopener" data-fr="Voir tous les avis sur Google">Ver todas no Google</a>
       </div>
       <p class="eyebrow fb-t" data-fr="Messages reçus">Mensagens que a Isabel recebe</p>
       <div class="fb" id="fb"></div>
@@ -1141,15 +1178,17 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
           <p data-fr="Shopping Banix, Av. 5 de Outubro 21, 1er étage, boutique 102">Shopping Banix, Av. 5 de Outubro 21, 1.º andar, loja 102</p>
           <div id="status" class="status"><i></i><span></span></div>
           <table aria-label="Horário"><tbody id="hrs"></tbody></table>
-          <a class="btn btn-fill" href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener" data-fr="Itinéraire · Google Maps">Como chegar · Google Maps</a>
+          <a class="btn btn-fill" href="https://maps.google.com/?cid=2973642507304420352" target="_blank" rel="noopener" data-fr="Itinéraire · Google Maps">Como chegar · Google Maps</a>
         </div>
         <div class="cityc">
           <h3>Cascais</h3>
           <p data-fr="Sur rendez-vous. L’adresse est confirmée lors de la réservation.">Por marcação. A morada é confirmada ao marcar.</p>
+          <a class="btn" href="#marcar" data-city="cs" data-fr="Réserver à Cascais">Marcar em Cascais</a>
         </div>
         <div class="cityc">
           <h3 data-fr="Genève">Genebra</h3>
           <p data-fr="Sur rendez-vous. Les dates sont confirmées sur WhatsApp.">Por marcação. As datas são confirmadas pelo WhatsApp.</p>
+          <a class="btn" href="#marcar" data-city="ge" data-fr="Réserver à Genève">Marcar em Genebra</a>
         </div>
       </div>
       <div class="socials" id="socials"></div>
@@ -1161,7 +1200,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
   <div class="in foot">
     <div><span class="mono">Reviv</span><p style="margin-top:14px">Estética Integrada · Isabel Miranda<br>Torres Vedras · Cascais · <span data-fr="Genève">Genebra</span></p></div>
     <div><p class="fh">WhatsApp</p><p><a href="https://wa.me/351918910174" target="_blank" rel="noopener">918 910 174</a><br><a href="tel:+351918910174" data-fr="Appeler">Ligar</a></p></div>
-    <div><p class="fh" data-fr="Réseaux">Redes</p><p><a href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">Instagram</a><br><a href="https://www.facebook.com/revivesteticaintegrada/" target="_blank" rel="noopener">Facebook</a><br><a href="https://maps.google.com/?cid=2973468296520328192" target="_blank" rel="noopener">Google Maps</a></p></div>
+    <div><p class="fh" data-fr="Réseaux">Redes</p><p><a href="https://www.instagram.com/revivesteticaintegrada" target="_blank" rel="noopener">Instagram</a><br><a href="https://www.facebook.com/revivesteticaintegrada/" target="_blank" rel="noopener">Facebook</a><br><a href="https://maps.google.com/?cid=2973642507304420352" target="_blank" rel="noopener">Google Maps</a></p></div>
   </div>
   <p class="in credit" data-fr="Site de démonstration préparé par Valeria pour Reviv. Photos des soins à titre d’illustration (Unsplash) ; résultats et publications : Reviv.">Site de demonstração preparado por Valeria para a Reviv. Fotografias dos tratamentos meramente ilustrativas (Unsplash); resultados e publicações: Reviv.</p>
 </footer>
@@ -1229,7 +1268,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
   function img(f,lazy,sizes){var i=el('img');i.src=f.src;var mw=Math.round(700*f.w/Math.max(f.w,f.h));i.srcset=f.src.replace(/\.jpg$/,'-m.jpg')+' '+mw+'w, '+f.src+' '+f.w+'w';i.sizes=sizes||'(max-width:760px) 100vw, 50vw';i.alt=L(f.alt);i.width=f.w;i.height=f.h;if(f.foco)i.style.objectPosition=f.foco;if(lazy){i.loading='lazy';i.decoding='async'}f._img=i;return i}
 
   // hero: slow crossfade, one figure per hero photo
-  fotos('hero').forEach(function(f,i){var fig=el('figure');if(i===0)fig.className='on';var hi=img(f,i>0,'100vw');if(i===0)hi.setAttribute('fetchpriority','high');fig.appendChild(hi);$('slides').appendChild(fig)});
+  fotos('hero').forEach(function(f,i){var fig=el('figure');if(i===0)fig.className='on';var hi=img(f,i>0,'(max-width:760px) 60vw, 100vw');if(i===0)hi.setAttribute('fetchpriority','high');fig.appendChild(hi);$('slides').appendChild(fig)});
   var heroFigs=$('slides').children,heroI=0;
   if(heroFigs.length>1)setInterval(function(){heroFigs[heroI].className='';heroI=(heroI+1)%heroFigs.length;heroFigs[heroI].className='on'},14000);
 
@@ -1245,7 +1284,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
     Array.prototype.forEach.call($('cases').children,function(b){b.setAttribute('aria-pressed',b.dataset.c===c?'true':'false')});
   }
   function buildCases(){$('cases').innerHTML='';$('cases').hidden=casos.length<2;casos.forEach(function(c){var b=el('button','tab',L(CASOS[c]));b.type='button';b.dataset.c=c;b.addEventListener('click',function(){showCase(c)});$('cases').appendChild(b)});showCase(caso)}
-  function buildResMore(){$('resmore').innerHTML='';fotos('resultados').forEach(function(f){var fig=el('figure','rv is-in'+(f.wide?' wide':''));fig.appendChild(f._img&&f._img.parentNode?f._img:img(f,true));if(f.leg)fig.appendChild(el('figcaption',null,L(f.leg)));$('resmore').appendChild(fig)})}
+  function buildResMore(){$('resmore').innerHTML='';fotos('resultados').forEach(function(f){var fig=el('figure','rv is-in'+(f.wide?' wide':''));fig.appendChild(f._img&&f._img.parentNode?f._img:img(f,true,f.wide?'(max-width:760px) 92vw, 860px':'(max-width:760px) 74vw, 400px'));if(f.leg)fig.appendChild(el('figcaption',null,L(f.leg)));$('resmore').appendChild(fig)})}
   var cmp=$('cmp'),rng=$('cmprange');
   rng.addEventListener('input',function(){cmp.style.setProperty('--pos',rng.value+'%')});
 
@@ -1322,7 +1361,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
   REV.forEach(function(r){var f=el('figure','rev');f.appendChild(el('div','st','★★★★★'));f.appendChild(el('p',null,r[2]));f.appendChild(el('figcaption','who',r[0]+' · '+r[1]));$('revs').appendChild(f)});
 
   // socials
-  [['https://www.instagram.com/revivesteticaintegrada',IG,'@revivesteticaintegrada',['Instagram · 2.839 seguidores (29/10/2026)','Instagram · 2 839 abonnés (29/10/2026)']],['https://www.facebook.com/revivesteticaintegrada/',FB,'Reviv Estética Integrada',['Facebook','Facebook']],['https://maps.google.com/?cid=2973468296520328192',PIN,'Reviv · Isabel Miranda',['Google Maps · 5,0 ★','Google Maps · 5,0 ★']]].forEach(function(s){var a=el('a');a.href=s[0];a.target='_blank';a.rel='noopener';a.innerHTML=s[1];var sp=el('span',null,s[2]);var sm=el('small');sm.dataset.pt=s[3][0];sm.dataset.fr2=s[3][1];sp.appendChild(sm);a.appendChild(sp);$('socials').appendChild(a)});
+  [['https://www.instagram.com/revivesteticaintegrada',IG,'@revivesteticaintegrada',['Instagram · 2.839 seguidores (29/10/2026)','Instagram · 2 839 abonnés (29/10/2026)']],['https://www.facebook.com/revivesteticaintegrada/',FB,'Reviv Estética Integrada',['Facebook','Facebook']],['https://maps.google.com/?cid=2973642507304420352',PIN,'Reviv · Isabel Miranda',['Google Maps · 5,0 ★','Google Maps · 5,0 ★']]].forEach(function(s){var a=el('a');a.href=s[0];a.target='_blank';a.rel='noopener';a.innerHTML=s[1];var sp=el('span',null,s[2]);var sm=el('small');sm.dataset.pt=s[3][0];sm.dataset.fr2=s[3][1];sp.appendChild(sm);a.appendChild(sp);$('socials').appendChild(a)});
   function buildSocials(){Array.prototype.forEach.call(document.querySelectorAll('#socials small'),function(s){s.textContent=T(s.dataset.pt,s.dataset.fr2)})}
 
   // horizontal scrollers: arrows, mouse drag, and a slow drift in the space gallery that stops on hover or touch
@@ -1399,6 +1438,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
       grid.appendChild(b);
     }
     cal.appendChild(grid);
+    if(!firstFree&&!state.date&&mo<last){state.month=new Date(mo.getFullYear(),mo.getMonth()+1,1);return buildCal()}
     if(!state.date||!grid.querySelector('[data-iso="'+state.date+'"]:not(:disabled)'))state.date=firstFree;
     Array.prototype.forEach.call(grid.querySelectorAll('.cal-d'),function(b){b.setAttribute('aria-pressed',b.dataset.iso===state.date?'true':'false')});
     renderSlots();
@@ -1416,6 +1456,7 @@ input[aria-invalid="true"]{border-color:var(--bad-fg)}
   function buildCities(){$('pros').innerHTML='';Object.keys(CITIES).forEach(function(k){var C=CITIES[k],b=el('button','pro');b.type='button';b.dataset.k=k;b.setAttribute('aria-pressed',k===state.city?'true':'false');b.appendChild(el('span','pm',C.mono));b.appendChild(el('b',null,L(C.name)));b.appendChild(el('small',null,L(C.sub)));b.addEventListener('click',function(){state.city=k;state.date=null;buildCities();buildCal();upd()});$('pros').appendChild(b)})}
   function fillSvc(){var s=$('svc');s.innerHTML='';CATS.forEach(function(c){var og=el('optgroup');og.label=L(c.t);c.items.forEach(function(it,i){var o=el('option',null,L(it.n));o.value=c.id+':'+i;og.appendChild(o)});s.appendChild(og)});var o=el('option',null,T('Ainda não sei: quero uma avaliação','Je ne sais pas encore : je veux une évaluation'));o.value='aval';s.appendChild(o);s.value=state.key}
   $('svc').addEventListener('change',function(){state.key=this.value;upd()});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-city]'),function(a){a.addEventListener('click',function(){state.city=a.dataset.city;state.date=null;buildCities();buildCal();upd()})});
   function upd(){
     var it=item(),n=$('nm').value.trim(),tel=$('tel').value.trim(),svc=it?L(it.n):T('uma avaliação','une évaluation'),city=L(CITIES[state.city].name),dt='';
     if(state.date){var p=state.date.split('-'),dd=new Date(+p[0],+p[1]-1,+p[2]);dt=DAYS[lang][dd.getDay()].toLowerCase()+' '+(+p[2])+'/'+(+p[1])}
